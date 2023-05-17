@@ -1,0 +1,91 @@
+\begin{thebibliography}{21}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Appelman(2010)}]{appelmanuzr}
+Appelman, D. (2010), \enquote{UZR Updates!}
+  \url{http://www.fangraphs.com/blogs/uzr-updates/}.
+
+\bibitem[{Baumer and Matthews(2013)}]{openWAR}
+Baumer, B. and Matthews, G.~J. (2013), \textit{openWAR: An Open Source System
+  for Overall Player Performance in Major League Baseball},
+  \url{http://github.com/beanumber/openWAR/}.
+
+\bibitem[{Cameron(2008)}]{cameron2008win}
+Cameron, D. (2008), \enquote{Win Values Explained: Part Five,}
+  \url{http://www.fangraphs.com/blogs/win-values-explained-part-five/}.
+
+\bibitem[{Davenport and Woolner(1999)}]{davenport1999pythag}
+Davenport, C. and Woolner, K. (1999), \enquote{Revisiting the Pythagorean
+  Theorem,} \url{http://baseballprospectus.com/article.php?articleid=342}.
+
+\bibitem[{{Fangraphs Staff}(2013)}]{drs}
+{Fangraphs Staff} (2013), \enquote{DRS,}
+  \url{http://www.fangraphs.com/library/defense/drs/}.
+
+\bibitem[{Fast(2009)}]{fastdips}
+Fast, M. (2009), \enquote{Confessions of a DIPS apostate,}
+  \url{http://www.hardballtimes.com/confessions-of-a-dips-apostate/}.
+
+\bibitem[{Forman(2010)}]{bbref}
+Forman, S. (2010), \enquote{Player Wins Above Replacement,}
+  \url{http://www.baseball-reference.com/blog/archives/6063}.
+
+\bibitem[{Forman(2013{\natexlab{a}})}]{rwar}
+--- (2013{\natexlab{a}}), \enquote{Position Player WAR Calculations and
+  Details,}
+  \url{http://www.baseball-reference.com/about/war_explained_position.shtml}.
+
+\bibitem[{Forman(2013{\natexlab{b}})}]{compare}
+--- (2013{\natexlab{b}}), \enquote{WAR Comparison Chart,}
+  \url{http://www.baseball-reference.com/about/war_explained_comparison.shtml}.
+
+\bibitem[{Friendly(2013)}]{friendly}
+Friendly, M. (2013), \textit{Lahman: Sean Lahman's Baseball Database}, r
+  package version 2.0-3.
+
+\bibitem[{Hamrahi(2013)}]{hamrahi}
+Hamrahi, J. (2013), \enquote{Replacement Level and 10-Year Projections,}
+  \url{http://www.baseballprospectus.com/article.php?articleid=19910}.
+
+\bibitem[{Humphreys(2011)}]{humphreys2011wizardry}
+Humphreys, M. (2011), \textit{Wizardry: Baseball's All-time Greatest Fielders
+  Revealed}, Oxford University Press.
+
+\bibitem[{Jensen et~al.(2009)Jensen, Shirley, and Wyner}]{jensen2009bayesball}
+Jensen, S.~T., Shirley, K.~E., and Wyner, A.~J. (2009), \enquote{Bayesball: A
+  Bayesian hierarchical model for evaluating fielding in major league
+  baseball,} \textit{The Annals of Applied Statistics}, 3, 491--520.
+
+\bibitem[{Lahman(2013)}]{lahman}
+Lahman, S. (2013), \enquote{Sean Lahman's Baseball Database,}
+  \url{http://www.seanlahman.com/baseball-archive/statistics/}.
+
+\bibitem[{Lichtman(2010)}]{uzr}
+Lichtman, M. (2010), \enquote{The Fangraphs UZR Primer,}
+  \url{http://www.fangraphs.com/blogs/the-fangraphs-uzr-primer/}.
+
+\bibitem[{Miller(2007)}]{miller2007derivation}
+Miller, S.~J. (2007), \enquote{A derivation of the Pythagorean Won-Loss Formula
+  in baseball,} \textit{Chance}, 20, 40--48.
+
+\bibitem[{Slowinski(2010)}]{fangraphs}
+Slowinski, S. (2010), \enquote{What is WAR?}
+  \url{http://www.fangraphs.com/library/index.php/misc/war/}.
+
+\bibitem[{Smith(2013)}]{retrosheet}
+Smith, D. (2013), \enquote{Retrosheet,} \url{http://www.retrosheet.org/}.
+
+\bibitem[{Tango(2008)}]{tango}
+Tango, T. (2008), \enquote{How to calculate WAR,}
+  \url{http://www.insidethebook.com/ee/index.php/site/article/how_to_calculate_war/}.
+
+\bibitem[{Tung(2010)}]{tung2010confidence}
+Tung, D.~D. (2010), \enquote{Confidence Intervals for the Pythagorean Formula
+  in Baseball,} \url{http://vixra.org/abs/1005.0020}.
+
+\bibitem[{Wyers(2013)}]{wyers2013rw}
+Wyers, C. (2013), \enquote{Reworking WARP,}
+  \url{http://www.baseballprospectus.com/article.php?articleid=21586}.
+
+\end{thebibliography}

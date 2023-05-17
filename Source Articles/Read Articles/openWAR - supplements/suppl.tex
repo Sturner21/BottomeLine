@@ -1,0 +1,269 @@
+\documentclass[letterpaper,titlepage]{article}
+\pdfminorversion=4
+\usepackage{setspace}
+\doublespacing
+
+\usepackage{amsthm,amsmath,amssymb,natbib}
+\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+
+\usepackage{xspace,soul}
+\usepackage{graphicx}
+
+
+\newcommand{\Ex}{\mathbb{E}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\bp}{\mathbf{p}}
+
+\newcommand{\R}{\textsf{R}\xspace}
+
+\newcommand{\greg}[1]{\sethlcolor{yellow}\hl{[GM]: #1}}
+\newcommand{\ben}[1]{\sethlcolor{green}\hl{[BB]: #1}}
+\newcommand{\shane}[1]{\sethlcolor{pink}\hl{[SJ]: #1}}
+
+\def\balpha{\pmb{\alpha}}
+\def\bbeta{\pmb{\beta}}
+\def\bgamma{\pmb{\gamma}}
+\def\btheta{\pmb{\theta}}
+\def\bphi{\pmb{\phi}}
+\def\bpsi{\pmb{\psi}}
+\def\bB{\pmb{B}}
+\def\bD{\pmb{D}}
+\def\bH{\pmb{H}}
+\def\bS{\pmb{S}}
+\def\bX{\pmb{X}}
+
+\textwidth = 6in
+\textheight = 9in
+
+\oddsidemargin = +0.3in
+
+\evensidemargin = +0.3in
+
+\parindent 0pt
+
+\parskip 10pt
+
+\topmargin = -1.5cm
+
+
+\begin{document}
+
+\title{openWAR: An Open Source System for Evaluating Overall Player Performance in Major League Baseball}
+%
+\author{
+Benjamin S. Baumer \\
+Statistical \& Data Sciences \\
+Smith College \\
+Northampton, MA, USA \\
+\texttt{bbaumer@smith.edu}
+\and
+Shane T. Jensen\\
+Statistics \\ 
+The Wharton School\\
+University of Pennsylvania\\
+Philadelphia, PA, USA
+\texttt{stjensen@wharton.upenn.edu}
+\and
+Gregory J. Matthews\\
+Mathematics \& Statistics
+Loyola University Chicago\\
+Chicago, IL, USA
+\texttt{gjm112@gmail.com}
+}
+
+
+%\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\phantom{xxxx}
+
+\vspace{3cm}
+
+\begin{center}
+{\Large  {\bf Supplementary Materials for \\ 
+
+\vspace{2cm}
+
+``openWAR: An Open Source System for Evaluating Overall Player Performance in Major League Baseball"}}
+\end{center}
+
+\newpage
+
+\appendix
+
+\section{openWAR Package}
+
+Code for the openWAR package is available for download on GitHub at \url{https://github.com/beanumber/openWAR}.
+
+\section{Previous Implementations of WAR}
+\label{sec:war_compare}
+
+%There are many subtleties to each existing implementation of WAR, but 
+The major components of each existing implementation of WAR are summarized in Table \ref{tab:compare}. The details of how each of these components is calculated are beyond what we can present here. Instructions for how to reproduce these numbers are illustrative, but not rigorous~\citep{fangraphs, bbref, rwar, compare, tango, uzr, wyers2013rw}.  At best, the authors may provide a step-by-step example calculation, but never specify a statistical model in formal notation, nor do they include code that would unambiguously reveal the algorithms used. The Baseball Info Solutions (BIS) data set, which is used to compute the fielding component of $rWAR$ and $fWAR$, is proprietary, and thus cannot be part of a reproducible piece of scholarship in which the results (as opposed to the models or algorithms) are the primary contribution. The high cost of obtaining this data (tens of thousands of dollars per year) prevents all but a few persons from verifying any results that stem from its use. The fielding metrics used by those two implementations, Defensive Run Saved ($DRS$) and Ultimate Zone Rating ($UZR$) are also proprietary. While extensive descriptions of each have been published~\citep{drs,uzr}, they too are illustrative---rather than specific---and none include source code. Occasionally, these organizations publish ``bug" fixes~\citep{hamrahi} or updates~\citep{appelmanuzr} that change previously published point estimates. Baseball Prospectus has announced plans to include more uncertainty and transparency in $WARP$~\citep{wyers2013rw}, but it is not known if this will include a release of source code\footnote{Incidentally, no further uncertainty updates to WARP have been published since Wyers left Baseball Prospectus to joined the Houston Astros in November 2013.}. 
+	
+	\begin{table}[ht!]
+		\centering
+		\begin{tabular}{c|c|c|c}
+		 & $rWAR$ & $fWAR$ & $WARP$ \\
+		 \hline
+		 Data Source & BIS & BIS & Retrosheet \\
+		 Batting 		& modified $wRAA$ & $wRAA$ & Linear Weights \\
+		 Baserunning & Baserunning Runs & $BsR$ & Baserunning Runs Above Average \\
+		 Fielding & $DRS$ & $UZR$ & Fielding Runs Above Average \\
+		 Pitching & Runs Allowed & $FIP$ & Pitching Runs Above Average \\
+		 \hline
+		\end{tabular}
+		\caption{Comparison of WAR implementations~\cite{compare}. The Baseball Info Solutions (BIS) data source is proprietary. Defensive Runs Saved ($DRS$) is a proprietary fielding metric developed by BIS. Ultimate Zone Rating ($UZR$) is a proprietary fielding metric developed by~\cite{uzr} and licesensed to Fangraphs.}
+		\label{tab:compare}
+	\end{table}
+	
+
+%	\begin{quotation}
+%	Over the past four years, Mr. Zobrist has led baseball in WAR, ahead of stars like Albert Pujols, Ryan Braun and Robinson Cano.~\cite{eder2013war}
+%	\end{quotation}	
+	
+
+\section{MLBAM data set}
+\label{apx:data}
+
+There are two main open sources of baseball data. \cite{lahman} maintains a database of seasonal data that has also been packaged for \R by \cite{friendly}. However, this data does not contain play-by-play information, making it insufficiently granular for WAR-type calculations, especially with respect to fielding. Retrosheet (\cite{retrosheet}) is an excellent source of free play-by-play data, but the batted ball locations are discrete, rather than continuous. That is, each batted ball is reported as falling into one of several dozen pre-defined polygonal zones. This level of detail is sufficient for some sophisticated defensive metrics, such as~\cite{humphreys2011wizardry}, but not others, such as UZR or SAFE~\citep{jensen2009bayesball}. Both of these data sources are updated periodically (usually at the end of the season). 
+
+As noted in the paper, $openWAR$ uses data obtained from MLBAM. This data is not \emph{libre}, but it does reside on a publicly-available web server, making it \emph{gratis}. Furthermore, it is updated in real-time, and contains $(x,y)$-coordinates for each batted ball in every major league game. The \R package~\citep{openWAR} which has been developed simultaneously, will retrieve all data necessary to compute $openWAR$. %Because the data itself is not \emph{libre}, no data can be distributed with the package. However, t
+The package contains simple \R functions that will enable any user with an Internet connection to download the data of their choice. 
+
+The data available through this package is generally accurate. For example, summary statistics aggregated by team from all $184,739$ observations in 2012 are shown in Table \ref{tab:crosscheck} in the Appendix, next to the corresponding figures available through the Lahman database~\citep{lahman}. The agreement between the numbers presented in Table \ref{tab:crosscheck} is over 99.8\%\footnote{Specifically, the ratio of the Frobenius norm of the difference between the two sets and the Frobenius norm of the Lahman set is very small.}, indicating that the data collected and processed by $openWAR$ is of high fidelity. 
+
+
+%In Table \ref{tab:crosscheck}, we illustrate the accuracy of the MLBAM data set we collected by comparing aggregated results to those available in the Lahman database. The agreement between the two data sets is over 99.8\%. 
+
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Thu Aug 29 17:26:25 2013
+\begin{table}[]
+\centering
+	\scalebox{0.73}{
+\begin{tabular}{c|cccccccc|cccccccc}
+  \hline
+team & G & PA & AB & R & H & HR & BB & K & G & PA & AB & R & H & HR & BB & K \\ 
+  \hline
+ana & 162 & 6121 & 5537 & 766 & 1517 & 187 & 449 & 1112 & 162 & 6120 & 5536 & 767 & 1518 & 187 & 449 & 1113 \\ 
+  ari & 162 & 6152 & 5466 & 734 & 1414 & 165 & 539 & 1266 & 162 & 6148 & 5462 & 734 & 1416 & 165 & 539 & 1266 \\ 
+  atl & 162 & 6126 & 5427 & 699 & 1339 & 149 & 567 & 1289 & 162 & 6125 & 5425 & 700 & 1341 & 149 & 567 & 1289 \\ 
+  bal & 162 & 6160 & 5562 & 712 & 1374 & 214 & 480 & 1315 & 162 & 6158 & 5560 & 712 & 1375 & 214 & 480 & 1315 \\ 
+  bos & 162 & 6200 & 5636 & 737 & 1460 & 166 & 430 & 1204 & 162 & 6166 & 5604 & 734 & 1459 & 165 & 428 & 1197 \\ 
+  cha & 162 & 6111 & 5518 & 748 & 1409 & 211 & 461 & 1202 & 162 & 6111 & 5518 & 748 & 1409 & 211 & 461 & 1203 \\ 
+  chn & 162 & 5967 & 5411 & 613 & 1295 & 137 & 447 & 1235 & 162 & 5967 & 5411 & 613 & 1297 & 137 & 447 & 1235 \\ 
+  cin & 162 & 6115 & 5477 & 669 & 1375 & 172 & 481 & 1266 & 162 & 6115 & 5477 & 669 & 1377 & 172 & 481 & 1266 \\ 
+  cle & 162 & 6196 & 5526 & 667 & 1385 & 136 & 555 & 1087 & 162 & 6195 & 5525 & 667 & 1385 & 136 & 555 & 1087 \\ 
+  col & 162 & 6183 & 5584 & 758 & 1525 & 166 & 450 & 1213 & 162 & 6176 & 5577 & 758 & 1526 & 166 & 450 & 1213 \\ 
+  det & 162 & 6119 & 5477 & 726 & 1465 & 163 & 511 & 1103 & 162 & 6119 & 5476 & 726 & 1467 & 163 & 511 & 1103 \\ 
+  hou & 162 & 6014 & 5409 & 583 & 1276 & 146 & 463 & 1364 & 162 & 6012 & 5407 & 583 & 1276 & 146 & 463 & 1365 \\ 
+  kca & 162 & 6151 & 5638 & 676 & 1492 & 131 & 404 & 1032 & 162 & 6149 & 5636 & 676 & 1492 & 131 & 404 & 1032 \\ 
+  lan & 162 & 6091 & 5438 & 637 & 1367 & 116 & 481 & 1156 & 162 & 6091 & 5438 & 637 & 1369 & 116 & 481 & 1156 \\ 
+  mia & 162 & 6059 & 5440 & 610 & 1329 & 137 & 484 & 1228 & 162 & 6056 & 5437 & 609 & 1327 & 137 & 484 & 1228 \\ 
+  mil & 162 & 6226 & 5559 & 776 & 1443 & 202 & 466 & 1240 & 162 & 6224 & 5557 & 776 & 1442 & 202 & 466 & 1240 \\ 
+  min & 162 & 6209 & 5562 & 701 & 1446 & 131 & 505 & 1069 & 162 & 6209 & 5562 & 701 & 1448 & 131 & 505 & 1069 \\ 
+  nya & 162 & 6231 & 5524 & 803 & 1462 & 245 & 565 & 1175 & 162 & 6231 & 5524 & 804 & 1462 & 245 & 565 & 1176 \\ 
+  nyn & 162 & 6091 & 5454 & 650 & 1356 & 139 & 503 & 1250 & 162 & 6089 & 5450 & 650 & 1357 & 139 & 503 & 1250 \\ 
+  oak & 162 & 6187 & 5532 & 714 & 1317 & 195 & 550 & 1386 & 162 & 6183 & 5527 & 713 & 1315 & 195 & 550 & 1387 \\ 
+  phi & 162 & 6174 & 5546 & 684 & 1413 & 158 & 454 & 1094 & 162 & 6172 & 5544 & 684 & 1414 & 158 & 454 & 1094 \\ 
+  pit & 162 & 6014 & 5412 & 651 & 1311 & 170 & 444 & 1354 & 162 & 6014 & 5412 & 651 & 1313 & 170 & 444 & 1354 \\ 
+  sdn & 162 & 6112 & 5425 & 651 & 1336 & 121 & 539 & 1237 & 162 & 6112 & 5422 & 651 & 1339 & 121 & 539 & 1238 \\ 
+  sea & 162 & 6061 & 5499 & 621 & 1285 & 149 & 466 & 1259 & 162 & 6057 & 5494 & 619 & 1285 & 149 & 466 & 1259 \\ 
+  sfn & 162 & 6200 & 5559 & 718 & 1492 & 103 & 483 & 1097 & 162 & 6200 & 5558 & 718 & 1495 & 103 & 483 & 1097 \\ 
+  sln & 162 & 6326 & 5624 & 765 & 1524 & 159 & 533 & 1192 & 162 & 6326 & 5622 & 765 & 1526 & 159 & 533 & 1192 \\ 
+  tba & 162 & 6106 & 5401 & 697 & 1289 & 175 & 571 & 1324 & 162 & 6103 & 5398 & 697 & 1293 & 175 & 571 & 1323 \\ 
+  tex & 162 & 6216 & 5592 & 808 & 1523 & 200 & 478 & 1103 & 162 & 6214 & 5590 & 808 & 1526 & 200 & 478 & 1103 \\ 
+  tor & 162 & 6137 & 5525 & 723 & 1353 & 200 & 478 & 1255 & 162 & 6093 & 5487 & 716 & 1346 & 198 & 473 & 1251 \\ 
+  was & 162 & 6221 & 5615 & 729 & 1467 & 194 & 479 & 1325 & 162 & 6221 & 5615 & 731 & 1468 & 194 & 479 & 1325 \\ 
+   \hline
+\end{tabular}
+}
+\caption{Cross-check between MLBAM data collected by openWAR (left) and Lahman data (right), 2012. These data are aggregated by team from 187,739 observations. } 
+\label{tab:crosscheck}
+\end{table}
+
+In Table \ref{tab:events}, we list the 31 event types in the MLBAM data set, along with their frequencies of occurrence in 2012. 
+
+% latex table generated in R 3.0.1 by xtable 1.7-1 package
+% Wed Sep 11 11:55:58 2013
+\begin{table}[]
+\centering
+\begin{tabular}{lcc}
+  \hline
+Event Type & $N$ & Frequency \\ 
+  \hline
+Strikeout & 36286 & 0.196 \\ 
+  Groundout & 35266 & 0.191 \\ 
+  Single & 27954 & 0.151 \\ 
+  Flyout & 24890 & 0.135 \\ 
+  Walk & 13660 & 0.074 \\ 
+  Pop Out & 9072 & 0.049 \\ 
+  Double & 8221 & 0.045 \\ 
+  Lineout & 6666 & 0.036 \\ 
+  Home Run & 4937 & 0.027 \\ 
+  Forceout & 3984 & 0.022 \\ 
+  Grounded Into DP & 3613 & 0.020 \\ 
+  Field Error & 1705 & 0.009 \\ 
+  Hit By Pitch & 1494 & 0.008 \\ 
+  Sac Bunt & 1478 & 0.008 \\ 
+  Sac Fly & 1213 & 0.007 \\ 
+  Intent Walk & 1056 & 0.006 \\ 
+  Triple &  927 & 0.005 \\ 
+  Double Play &  494 & 0.003 \\ 
+  Runner Out &  463 & 0.003 \\ 
+  Bunt Groundout &  410 & 0.002 \\ 
+  Fielders Choice Out &  352 & 0.002 \\ 
+  Bunt Pop Out &  209 & 0.001 \\ 
+  Strikeout - DP &  146 & 0.001 \\ 
+  Fielders Choice &  114 & 0.001 \\ 
+  Fan interference &   46 & 0.000 \\ 
+  Batter Interference &   35 & 0.000 \\ 
+  Catcher Interference &   23 & 0.000 \\ 
+  Sac Fly DP &   11 & 0.000 \\ 
+  null &    5 & 0.000 \\ 
+  Bunt Lineout &    4 & 0.000 \\ 
+  Triple Play &    3 & 0.000 \\ 
+  Sacrifice Bunt DP &    2 & 0.000 \\ 
+   \hline
+\end{tabular}
+\caption{Frequency of Events in MLBAM data set (2012)} 
+\label{tab:events}
+\end{table}
+
+Nevertheless, there are some significant limitations to this data set~\citep{fastdips}. It is important to note that these data are collected for the purposes of entertainment (e.g. feeding the MLBAM web application) and not for the purposes of data analysis. 
+
+
+\section{Converting Runs to Wins}
+\label{apx:pythag}
+
+As changes in the run expectancy matrix are measured in \emph{runs}, but the units of WAR are \emph{wins}, it is necessary to convert runs to wins. A common convention used by all providers of WAR is that 10 runs is equivalent to 1 win~\citep{cameron2008win}. This value can thought of as a slope in the relationship between runs and wins at a point representing the average team. More specifically, this value can be derived as the partial derivative of Pythagorean Win Expectation evaluated at a specific point. 
+
+Consider the general form of James' formula for \emph{expected winning percentage}, which is derivable if run scoring follows independent Weibull distributions~\citep{miller2007derivation}. That is, with $p$ equal to a parameter (originally 2), then 
+$$
+	WPct_p(RS, RA) = \frac{1}{1 + \left( \frac{RA}{RS} \right)^p}
+$$
+where $RS$ and $RA$ are the runs scored and allowed by a team, respectively. The gradient of this function is
+$$
+	\nabla WPct_p(RS, RA) = \left\langle \frac{\partial WPct_p}{\partial RS} , \frac{\partial WPct_p}{\partial RA} \right\rangle = \frac{p \cdot (RA/RS)^p}{(1 + (RA/RS)^p)^2} \cdot \left\langle \frac{1}{RS}, -\frac{1}{RA} \right\rangle \,.
+$$
+Thus, if $r=RS=RA$ (as it will be for an average team), then this becomes:
+$$
+	\nabla WPct_p (r,r) = \frac{p}{4} \left\langle \frac{1}{r}, -\frac{1}{r} \right\rangle = \frac{p}{4r} \cdot \langle 1, -1 \rangle \,.
+$$
+The gradient points in the direction of scoring more runs and allowing fewer, and from the magnitude we recover that the number of runs associated with one win over a 162 game season is:
+$$
+	\text{Runs per Win}_p(r) = \left( \frac{p}{4r} \right)^{-1} / 162 = \frac{2r}{81p}.
+$$	
+The optimal choice of the parameter $p$ may depend on the run-scoring environment. While James originally chose $p=2$ for convenience, better fits for Major League Baseball have been obtained using $p=1.83$~\citep{davenport1999pythag} and $p=1.86$~\citep{tung2010confidence}. The average number of runs scored per 162 games has been approximately $r=714$ since 1901, and $r=761$ since the league expanded to 30 teams in 1998. Reasonable choices for $p$ and $r$ will yield conversion factors in the neighborhood of 10.  
+
+
+
+\bibliographystyle{asa}
+\bibliography{references}
+
+
+
+\end{document}

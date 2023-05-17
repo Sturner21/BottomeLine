@@ -1,0 +1,927 @@
+---
+title: "Baseball and the Bottom Line"
+subtitle: "An Econometric Analysis of Market Efficiency for MLB Player Contracts"
+author: "Sam Turner"
+abstract: "Since MLB players earned Free Agency in 1976 there has been little economic literature examining its effect on the efficiency of the market for player contracts. What little exists often is counterintuitive to economic findings in other subfields. We both reconsider old methodology and propose a new one which better represents current economic consensus to retest if the MLB labor market is acting efficiently. We ultimately find efficiency is almost completely determined by methodology and the researcher's belief of what makes a player \"good\"."
+date: "4/30/23"
+format: pdf
+editor: visual
+bibliography: Bib-4-24.bib
+fontsize: 12pt
+mainfont: Times New Roman
+sansfont: Times New Roman
+monofont: Times New Roman
+geometry: margin = 1in
+linestretch: 2
+indent: true
+execute: 
+  echo: false
+number-sections: true
+---
+
+# Introduction {#sec-Introduction}
+
+The 2004 publication of Moneyball by Michael Lewis sent shock-waves through Major League Baseball (MLB) ownership. The thesis of Moneyball was that owners were valuing players offensive production incorrectly, allowing the Oakland Athletics, a team in MLB, to win many more games than their opponents with a vastly smaller payroll [@lewis_moneyball_2004]. This extraordinary claim garnered the attention of many economists who sought out to test if this claim had any credibility. Some economists [@hakes_economic_2006; @duquette_major_2019; @congdon-hohman_beyond_2018; @thaler_market_2004] found this claim to be credible while others [@baumer_quantifying_2014; @pinheiro_all_2022] found that the Athletics successes could be attributed to other reasons than what Moneyball claimed. While Moneyball is an enjoyable novel and highlighted a shortcoming of MLB ownership it only considered a small part of what ownership considers when employing a player. Therefore, the conclusions drawn both from Moneyball and the aforementioned articles should not have their conclusions generalized to describe the efficiency of the entire labor market for MLB players.
+
+There have been previous attempts to quantify and measure the market efficiency for MLB players. The most influential being Scully (1974) and Krautmann (1999). Scully's article was the seminal piece of literature on the topic and set forth the precedent and structure that subsequent articles have followed. Scully used the marginal revenue product of labor (MRPL or MRP) model to judge the productivity of MLB players. To achieve this, Scully first estimated how players impact their team's ability to win and multiply that effect by the estimated effect winning has on revenues for teams. The market that Scully considered was very different than the one seen today. Scully published two years before the reserve clause was overturned, partially deregulating the MLB labor market and allowing the most veteran players to take their abilities to whichever team was the highest bidder [@hall_testing_2002]. Since such a drastic difference is now present in the labor market the applicability of Scully's findings should be brought into question. Krautmann (1999) attempted to bring Scully's findings into a more contemporary light but suffered from some methodological shortcomings. However, he did highlight some important shortcomings in Scully's methods too. Namely, that when using the Scully method the definition of successful outcomes for a player has drastic impacts on conclusions about market efficiency. Since there has hardly been any investigation into this question in almost 25 years it ought to be considered in a more contemporary light. Not only is there now over 30 years of salary and performance data [@Lahman_cit] but there have also been huge strides in statistical understanding of player performance.
+
+Inspired by the work of more contemporary baseball statisticians [@baumer_openwar_2015] and new developments in consumer behavior research [@borland_demand_2003] we can understand that there are several shortcomings not addressed by either Scully or Krautmann. First, better understanding of player ability requires more than a collection of a couple outcome statistics. A more mathematically rigorous approach should be used for the most accurate results to be found [@baumer_openwar_2015]. Thus, we will use more advanced regression techniques to retest the Scully method over a longer time interval to see if it has any impact on his findings. Additionally, new research in consumer demand for sports has found that fans often do not care as much about a team winning a game as they do with the contention and quality of said game [@borland_demand_2003]. This means that a new approach should be used that takes into account these new findings. This paper proposes a new method which aims to measure player success in terms of offensive and defensive quality to better represent these new findings.
+
+Ultimately, we confirm most of the findings of previous literature when repeating their methods. Namely, if we judge players only on their ability to help their team win then the data suggests they are over compensated. However, when we examine their findings over the 31 year period for which we have data we find that our economic intuition and the results lead in separate directions. Findings in previous literature of labor economics and industrial organization would suggest that labor strikes, which occured several times over the period considered, should lead to higher compensation for players [@card_strikes_1990]. Yet, when repeating the methodology of previous literature we are unable to confirm these findings. However, when considering the new methodology proposed, which tries to better align with new consumer research, we find this discrepancy between labor economics and previous literature disappears. This suggests that considering the new method of estimation would provided a better framework for future research to expand on.
+
+# Literature Review {#sec-LitReview}
+
+In sports economics there are two theories which attempt to explain what success is in the eyes of team ownership [@andreff_handbook_2006]. These can be understood as win maximization and utility maximization theories. Under the win maximization theory the owner's major or sole concern is, obviously, to win. This means that ownership will have much more inelastic demand for talented players, running deficits, and generally treating the team unlike a profit maximizing firm [@andreff_handbook_2006, pp. 601-603]. The utility maximization theory can be used to describe the motivations of every other ownership group. Utility maximization states that owners will hire players to maximize either the utility of the fans or themselves. Sometimes this can culminate into treating the team as a profit maximizing firm, and other times this can be trivial outcome chasing. In general, utility maximization theory is applied to any ownership group, theoretical or otherwise, that has objectives for the team other than winning. In applied econometric literature it is much more common to find research using the win maximization theory, explicitly or otherwise. Utility maximization theory relies on the abstract concept of utils, which are ordinal and not cardinal, and and are immeasurable. Therefore, most research focuses on the win maximization theory since wins are cardinal, measurable, and overall easier to work with.
+
+Almost all previous literature assumes that winning games is the only thing that consumers, and therefore owners, care about. Thus, their judgement of a player's MRPL always uses winning as the yardstick for success. While this may be true for some fans this is clearly not true for all. Think of "die-hard" fans who will continue to claim to be fans and attend games even in years where winning is scarce. In fact, the current consensus is that consumers do not only care about winning [@borland_demand_2003]. In some of the most recent sports demand research, including Borland and Macdonald (2003), the consensus is that considering only winning as the motivation of consumers attending sporting events makes models too simple and leads to wrong conclusions. Instead, they suggest consumers care much more about the quality of the game and its contention. Meaning consumers would much rather see a game played well an be unsure of the outcome rather than seeing their preferred team win.
+
+The seminal piece of MLB labor market efficiency is Gerald Scully's 1974 publication "Pay and Performance in Major League Baseball" [@scully_pay_1974]. Scully's research involved observing how the reserve clause influenced salary negotiations between players and owners. He hypothesized, and ultimately found, that the reserve clause created monopsony hiring power for MLB ownership. By Scully's estimations, this allowed for owners to pay players wages which were less than their MRP. Scully's analysis has become antiquated since the reserve clause was overturned in 1976 [@hall_testing_2002] and the market structure became substantially less monopsonistic. However, the importance and genius of Scully's research is the methodology. Thus, we use Scully's methods in this paper as a baseline to ensure findings and conclusions are profound and undiscovered.
+
+As some economists have previously noticed [@vrooman_baseball_1996, pp. 353], after the abolition of the uniform reserve clause a bilateral monopoly was created between players and owners for all contract types except free agents. There is currently not a consensus on how to model bilateral monopolies and their interactions other than considering vertical integration between the parties. However, vertical integration clearly does not apply here. Therefore, previous literature would suggest that this bilateral monopoly should be modeled using bargaining power [@siddhartha_equilibrium_2002]. Under this model, the party with even slightly higher bargaining power will earn a higher portion of the profits. Thus, we can expect that as either owners or players change their bargaining power so too will their proportions of compensation change.
+
+# Economic Model {#sec-Method}
+
+## Marginal Revenue Product of Labor {#sec-MRPLMethod}
+
+Modeling marginal revenue product of labor is simple. Labor's productive ability is not uniform across each worker. Therefore, distinction between laborers and and their marginal production is needed for firms to meet their profit maximizing goals. This can be demonstrated simply in the following equation,
+
+$$
+MRPL = \frac{\Delta R}{\Delta Q}\cdot\frac{\Delta Q}{\Delta L}.
+$$ {#eq-GeneralMRP}
+
+Where $\Delta R$ is the change in revenue due to the $\Delta Q$ change in quantity which is then multiplied by the $\Delta Q$ change in quantity due to the $\Delta L$ change in labor. Under the Neoclassical paradigm, firms will hire an additional laborer until the additional output from that laborer will result in their total marginal revenue equaling their total marginal cost [@brozova_modern_2015].
+
+This approach is not novel in the field of labor economics or industrial organization. Nor is it novel even in the much more specified area of sports economics which we can see from Scully (1974) who is one among the many who have used this model to help estimate the value of professional sports players.
+
+## Win Maximization Method {#sec-WinMethod}
+
+Scully (1974) uses the marginal revenue product of labor, paired with the win maximization hypothesis, to examine if the labor market for MLB players is behaving efficiently. Scully's estimation of MRPL is estimated by team data in the following equations,
+
+$$
+MRP_{I,J}=\frac{\partial TR_{I,J}}{\partial WPCT_{I,J}}\cdot\frac{\partial WPCT_{I,J}}{\partial PERF_{I,J}}.
+$$ {#eq-ScullyMRP}
+
+Where $\partial TR$ is the change in total revenue for a team $I$ in year $J$ from the $\partial WPCT$ change in win percentage. The $\partial WPCT$ change in win percentage for a team $I$ in year $J$ is due to $\partial PERF$ change in on field performance. Scully estimated the $TR$ of team $I$ in year $J$ with the following regression,
+
+$$
+TR_{I,J}=\alpha_0+\alpha_1X_{I,J}+\alpha_2WPCT_{I,J}+\epsilon.
+$$ {#eq-ScullyTRReg}
+
+In this regression, $X_J$ is a vector of team specific factors that Scully controlled for that could effect team revenue, such as metropolitan population [@scully_pay_1974], and $\alpha_1$ is a generalized term for their coefficients. Scully never references $\alpha_1$ later so its distinction is unnecessary. While $\alpha_2$ is the estimated effect Scully found a thousandth change in win percentage had on team $I$'s total revenue in year $J$. Scully then estimated what the effect of certain performance metrics had on a team's win percentage with the following regression,
+
+$$
+WPCT_{I,J}=\gamma_0+\gamma_1Y_{I,J}+\gamma_2TSA_{I,J}+\gamma_3TSW_{I,J}+\epsilon.
+$$ {#eq-ScullyWinPctReg}
+
+In this regression $Y_{I,J}$ is a vector of team specific factors that Scully controlled for that could effect team performance quality. Scully never investigates their effects further so $\gamma_1$ is used as a placeholder for their coefficients. Scully only differentiated between offense and defense and his statistic for measuring their effect on team $I$'s win percentage in year $J$ was team slugging average (for offense) and team strikeout-to-walk ratio (for defense). $\gamma_2$ represents the associated effect that slugging average had on a team's win percentage as does $\gamma_3$ but for the associated effect strikeout-to-walk ratio had.
+
+After calculating the coefficients estimating an individual player's marginal revenue product of labor is easy. Estimated marginal revenue product is denoted by the hat and described in the following equation,
+
+$$
+\widehat{MRP}=\alpha_2\cdot(\gamma_2\cdot SA)\cdot(\gamma_3\cdot SW).
+$$ {#eq-ScullyPlayerEstimate}
+
+The coefficients $\alpha_2, \gamma_2,$ and $\gamma_3$ have been described above. $SA$ is a hitter's contribution to team slugging average and $SW$ is a pitcher's contribution to team strikeout-to-walk ratio. This allows for a player's MRP to be assigned proportionally depending on their performance.
+
+One drawback of this approach is that it does not account for fielding (such as putouts, assists, or errors) nor baserunning (such as stolen bases) abilities for any players. It also reduces the hitting and pitching performance of a player into two summary statistic which do not explain team win percentage well. @eq-ScullyWinPctReg only has an R-Squared value of about .6 [@scully_pay_1974]. Improvements in sabrmetric (baseball analytics) techniques have shown that this method is not effective for measuring a player's true performance [@baumer_openwar_2015; @pinheiro_all_2022]. Thus, when replicating Scully's method I decided to use different predictors for win percentage which I generally call $PERF$ in @eq-ScullyMRPNew.
+
+An additional drawback of the Scully's method was highlighted by Krautmann (2013). All MLB teams are privately held firms which means that their financials are not available to the public. Therefore, when Financial World Times and Forbes attempt to estimate each team's revenue it was understood that there would be some error. However, from released court documents during litigation it was revealed that those estimates were off by almost 25% in some cases [@krautmann_what_2013, pp.99]. Since revenue data is not available anywhere else and using it will lead to gross miscalculations, some simplifying assumptions needed to be made. Scully pointed out in his paper that total team revenue was a function of both turnstyle revenue (fans watching game at the stadium) and broadcasting (both television and radio) revenues [@scully_pay_1974, pp.917]. Attendance is a huge factor in turnstyle revenue and it is not a logical leap to claim that it is probably highly correlated with broadcasting revenues. Thus, using attendance as a proxy for revenue appears to be the only way to maintain the integrity of this replication.
+
+Therefore, we use the following equation to compare Scully's hypothesis in a more contemporary light,
+
+$$
+MRP_{I,J}=\frac{\partial Attendance_{I,J}}{\partial WPCT_{I,J}}\cdot\frac{\partial WPCT_{I,J}}{\partial PERF_{I,J}}.
+$$ {#eq-ScullyMRPNew}
+
+To analyze this we will use similar regression methods as Scully. The major difference will be in that we use a fixed effects model instead of controlling for the arbitrary variables as Scully did in @eq-ScullyTRReg and @eq-ScullyWinPctReg. Using a fixed effects model will remove a much larger portion of endogeneity and omitted variable bias. To estimate the effect that team performance outcomes $PERF_{I,J}$ have on the $I$th team's win percentage $WPCT_{I,J}$ in year $J$ can be expressed as,
+
+$$
+WPCT_{I,J}=\Gamma_0+\Gamma_1PERF_{I,J}+\alpha_I+\theta_J+\epsilon.
+$$ {#eq-MyWPCTPERFReg}
+
+In @eq-MyWPCTPERFReg, $\Gamma_1$ can be understood as a general coefficient since including all variables that could affect the $I$th team's win percentage in year $J$ would make the equation difficult to interpret. A more detailed discussion of the variables is available in @sec-WinMaximizationResults. The term $\alpha_I$ can be thought of as an intercept term, and its use is similar to the $Y_{I,J}$ that Scully uses in @eq-ScullyWinPctReg, because it is used to control for differences between teams that stay the same each year which might affect win percentage. Examples of this include, but are not limited to, managerial quality, stadium location, etc. While the term $\theta_J$ can be thought of also as an intercept term because it is used to control for things that stay the same for each team but differ year to year. Examples of this are mostly related to league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+
+To estimate the effect that win percentage $WPCT_{I,J}$ has on team the $I$th team's attendance $Attendance_{I,J}$ in year $J$ can be expressed as,
+
+$$
+Attendance_{I,J}=\Omega_0+\Omega_1WPCT_{I,J}+\eta_I+\tau_J+\epsilon.
+$$ {#eq-MyAttWPCTReg}
+
+In @eq-MyAttWPCTReg, $\Omega_1$ can be understood as the associated effect that changes in win percentage for the $I$th team in year $J$ have on their attendance. A more detailed discussion of $\Omega_1$ is available in @sec-WinMaximizationResults. The term $\eta_I$ can be thought of as an intercept term similar to $X_{I,J}$ in @eq-ScullyTRReg. This is used to control for factors that differ from team to team but stay the same year over year. This can be thought of as the term that controls for population and fan enthusiasm from team to team. While the term $\tau_J$ is very similar to the term $\theta_J$ in @eq-MyWPCTPERFReg in that it controls for variables which stay the same from team to team but differ from year to year. Most examples of this would be league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+
+## Utility Maximization Method {#sec-UtilityMethod}
+
+The utility maximization method is an expansion and revision of the Scully approach. It rejects the assumption that consumers only gain utility, and therefore attend games, to see a team win. More contemporary consumer research has found that while winning has does have an influence on consumer behavior, it is far from the only or best predictor [@borland_demand_2003]. Therefore, a new judgement of player abilities is needed and it must better represent consumer preferences. This paper proposes that scoring runs and preventing runs from being scored against are better predictors for consumer preferences. This aligns better with the previous literature which claims that consumers value quality and contention of games more than winning [@borland_demand_2003]. Thus, using this new method, a player's MRP is the sum of their ability to help their team score runs and prevent their opponent from scoring runs multiplied by the effect this has on attendance. This new method of measuring MRP can be expressed as the following equation,
+
+$$
+MRPL_{I,J}=\frac{\partial Attendance_{I,J}}{\partial (RA+R)_{I,J}}\cdot\frac{\partial (RA+R)_{I,J}}{\partial PERF_{I,J}}.
+$$ {#eq-RSRCMRP}
+
+Where for team $I$ in year $J$, the change in attendance $\partial Attendance$ is due to the change in game quality $\partial (RA+R)$ which is in turn due to change in performance outcomes $\partial PERF$. This should look very similar to @eq-ScullyMRPNew because the only difference is the substitution of $\partial WPCT$ with $\partial (RA + R)$ to better account for consumer preferences. Note that MRPL is again measured in attendance instead of dollars because of the problems outlined in @sec-WinMethod.
+
+Similar to Scully in @eq-ScullyTRReg, we can estimate the effect that offensive (scoring runs) and defensive (preventing runs from being scored) quality have on attendance with the following fixed effects regression,
+
+$$
+Attendance_{I,J}=\mu_0+\mu_1RA_{I,J}+\mu_2R_{I,J}+\psi_I+\lambda_J+\epsilon.
+$$ {#eq-MyRSRCReg}
+
+In this regression $RA$ is a the number of runs scored against team $I$ in year $J$ and $R$ is the amount of runs team $I$ scored in year $J$. The term $\mu_1$ is the associated effect that an additional $RA$ will have on the attendance of team $I$ in year $J$. Similarly, $\mu_2$ is the associated effect that an additional $R$ will have on the attendance for team $I$ in year $J$. The variable $\psi_I$ can be understood as an intercept that is used to control for factors that differ from team to team but stay the same year over year. This can be thought of as the term that controls for population and fan enthusiasm from team to team. The variable $\lambda_J$ can also be thought of as an intercept that controls for variables which stay the same from team to team but differ from year to year. Most examples of this would be league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+
+It is imperative to note that it is impossible to directly measure the effect a singular player has on a team's ability to score or prevent runs from being scored. However, using team statistics it is possible to determine how offensive and defensive outcomes effect a team's ability to score and prevent runs from being scored. Thus we can estimate the effect each player has by first determining which outcomes are most important in scoring runs and preventing runs from being scored with the following fixed effect regressions,
+
+$$
+RA=\phi_0+\phi_1Pitching+\phi_2Fielding+\omega_I+\chi_J+\epsilon,
+$$ {#eq-RAReg}
+
+$$
+R=\beta_0+\beta_1Hitting+\beta_2Baserunning+\rho_I+\pi_J+\epsilon.
+$$ {#eq-RReg}
+
+Understanding both regressions is simple. The amount of runs scored against a team is a combination of the team's pitching and fielding ability. Many variables will be considered so the general coefficients $\phi_1$ and $\phi_2$ will be used as a place holder until actual weights are derived. Furthermore, the amount of runs that a team scores is a combination of a team's hitting and baserunning ability. Many variables will also be considered for hitting and baserunning so the general coefficients $\beta_1$ and $\beta_2$ will be used as a place holder until the actual weights are derived. The outcomes used and their associated weights are discussed further in @sec-UtilityResults. Both @eq-RAReg and @eq-RReg are fixed effects models. Thus, it is understood that both $\omega_I$ and $\rho_I$ are controlling for the same effects. Namely they control for things that stay the same year to year but differ from team to team. Examples of this include managerial quality, stadium location, etc. Similarly, the terms $\chi_J$ and $\pi_J$ are also understood to control for the same effects. They control for things that differ from year to year but stay the same from team to team. These mostly include league wide rule changes. The term $\epsilon$ is understood to be the error term that accounts for an additional variation in the data.
+
+Again, similar to Scully in @eq-ScullyPlayerEstimate we can use these regressions to estimate a player's MRPL once learning the values of the $\mu$'s, $\phi$'s, and $\beta$'s. The estimated marginal revenue product is denoted by the hat and described in the following equation,
+
+$$
+\widehat{MRPL}=(\mu_1\cdot RS)+(\mu_2\cdot RC)
+$$
+
+$$
+=(\mu_1\cdot[\phi_1Pitching+\phi_2Fielding])+(\mu_2\cdot[\beta_1Hitting+\beta_2Baserunning]).
+$$
+
+The coefficients $\mu_1, \mu_2, \phi_1, \phi_2, \beta_1,$ and $\beta_2$ are described above. To emphasize that we are estimating a player's contribution to $RA$ and $R$ we will use the variable $RS$ to denote $\widehat{RA}$ and $RC$ to denote $\widehat{R}$, respectively. Estimating a player's $RS$ or $RC$ is as simple as multiplying the amount of times they had an outcome occur by the associated weight that outcome has on a team's ability to score or prevent runs from being scored.
+
+## Relating Attendance to Wages {#sec-AttToWageMethod}
+
+Measuring marginal revenue using attendance instead of dollars was necessary to preserve the integrity of the model due to flawed estimates in team revenue data [@krautmann_what_2013]. However, it creates an issue of how to relate the wage data for each player to the attendance they bring in. Since they are different units it can initially seem like an impossible obstacle. However, as discussed before, you can use attendance as a proxy for revenue. Which means attendance can also be used as a proxy for cost.
+
+This paper assumes that ownership for each team is generally capable of determining how performance affects attendance, and since attendance affects team revenue, ownership will alter compensation accordingly. This means that, generally, ownership has an estimation for how a player will affect attendance. Since we only have salary data we can work backwards and glean what the estimated effect on attendance ownership expected. Thus, we can regress team attendance on team payroll with the following fixed effects model,
+
+$$
+Attendance_{I,J}=\zeta_0+\zeta_1(Payroll_{I,J})+\xi_I+\sigma_J+\epsilon.
+$$ {#eq-AttendancePayrollReg}
+
+In this regression, we find that for team $I$ in year $J$ an increase in payroll of 1 (dollar) will result in an change in attendance of $\zeta_1$. Payroll is the sum of the cost of all contracts for players for team $I$ in year $J$. The terms $\xi_I$ and $\sigma_J$ represent the fixed effects. The term $\xi_I$ represents things that differ across teams but stay the same year over year. This is mostly controlling for things such as park location. While the term $\sigma_J$ represents things that differ from year to year but remain the same across teams. Examples of this mostly include league wide rule changes.
+
+Using this equation and our assumptions we now have the relationship between how much a team spends and how that affects their attendance. This implies that we can compute how much attendance ownership expects an individual player to bring into the stadium by multiplying their salary by $\widehat{\zeta_1}$. Thus, it is possible now to compute both player's estimated and actual attendance figures. Continuing with methodology pioneered in previous literature we can now begin exploring the implication this has on market efficiency [@scully_pay_1974; @krautmann_whats_1999].
+
+# Empirical Strategy {#sec-Results}
+
+```{r}
+#| message: false
+library(tidyverse)
+library(Lahman)
+library(scales)
+library(modelsummary)
+library(fixest)
+library(quantmod)
+library(corrplot)
+library(extrafont)
+```
+
+```{r}
+# Import all the data sets that will be used
+Teams <- Lahman::Teams %>% 
+  filter(yearID >= 1985 & yearID <= 2016)
+
+Pitching <- Lahman::Pitching %>% 
+  filter(yearID >= 1985 & yearID <= 2016)
+
+Fielding <- Lahman::Fielding %>% 
+  filter(yearID >= 1985 & yearID <= 2016)
+
+FieldingOFsplit <- Lahman::FieldingOFsplit %>% 
+  filter(yearID >= 1985 & yearID <= 2016)
+
+Batting <- Lahman::Batting %>% 
+  filter(yearID >= 1985 & yearID <= 2016) %>% 
+  mutate(X1B = H-X2B-X3B-HR, .after = H)
+
+Salaries <- Lahman::Salaries
+```
+
+```{r}
+#| message: false
+#Make the offensive data set alterations
+
+Teams <- Teams %>% 
+  mutate(WinPct = (W / (W+L)) * 100, .after = L) %>%
+  mutate(X1B = H-X2B-X3B-HR, .after = H)
+
+Player_Batting <- Batting %>% 
+  group_by(playerID, yearID) %>% 
+  mutate(X1B = H-X2B-X3B-HR) %>% 
+  summarize(
+    G = sum(G),
+    AB = sum(AB),
+    R = sum(R),
+    H = sum(H),
+    X1B = sum(X1B),
+    X2B = sum(X2B),
+    X3B = sum(X3B),
+    HR = sum(HR),
+    RBI = sum(RBI),
+    SB = sum(SB),
+    CS = sum(CS),
+    BB = sum(BB),
+    SO = sum(SO),
+    IBB = sum(IBB),
+    HBP = sum(HBP),
+    SH = sum(SH),
+    SF = sum(SF),
+    GIDP = sum(GIDP)
+  )
+```
+
+```{r}
+#| message: false
+#Make the alterations needed to the defensive sets
+
+#Combine appearences across different outfield positions
+Player_FieldingOFsplit <- FieldingOFsplit %>% 
+  group_by(playerID, yearID) %>% 
+  summarize(G = sum(G),
+            GS = sum(GS),
+            InnOuts = sum(InnOuts),
+            PO = sum(PO),
+            A = sum(A),
+            E = sum(E),
+            DP = sum(DP),
+            PB = sum(PB),
+            WP = sum(WP),
+            SB = sum(SB),
+            CS = sum(CS),
+            ZR = sum(ZR))
+
+#Combine appearences across different infield positions
+Player_Fielding <- Fielding %>% 
+  group_by(playerID, yearID) %>% 
+  summarize(G = sum(G),
+            GS = sum(GS),
+            InnOuts = sum(InnOuts),
+            PO = sum(PO),
+            A = sum(A),
+            E = sum(E),
+            DP = sum(DP),
+            PB = sum(PB),
+            WP = sum(WP),
+            SB = sum(SB),
+            CS = sum(CS),
+            ZR = sum(ZR))
+
+Player_Inf_Out_Fielding <- Player_Fielding %>% 
+  full_join(Player_FieldingOFsplit, by = c("playerID","yearID"))
+
+
+
+
+#Replace all NA's with 0's.
+Player_Inf_Out_Fielding <- Player_Inf_Out_Fielding %>%
+  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>% 
+  mutate(across(where(is.logical), ~ ifelse(is.na(.), 0, .)))
+
+#Make Infield NA's into 0's so we can sum accross them
+Fielding <- Fielding %>% 
+  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .)))
+
+#Combine In-Fielding Statistics
+Team_Inf_Fielding <- Fielding %>% 
+  group_by(yearID, teamID, lgID) %>% 
+  summarize(
+    InnOuts = sum(InnOuts),
+    PO = sum(PO),
+    A = sum(A),
+    E = sum(E),
+    DP = sum(DP),
+    PB = sum(PB),
+    WP = sum(WP),
+    SB = sum(SB),
+    CS = sum(CS),
+    ZR = sum(ZR)
+  )
+
+
+
+#Sum accross stats relavent to outfield
+Team_OF_Fielding <-  FieldingOFsplit %>% 
+  group_by(yearID, teamID, lgID) %>% 
+  summarize(
+    InnOuts = sum(InnOuts),
+    PO = sum(PO),
+    A = sum(A),
+    E = sum(E),
+    DP = sum(DP)
+  )
+
+
+
+#Combine data sets
+Team_Full_Fielding <-  Team_Inf_Fielding %>% 
+  full_join(Team_OF_Fielding, by = join_by("yearID", "teamID", "lgID"))
+
+#Combine similar stats across datasets
+Team_Full_Fielding <-  Team_Full_Fielding %>% 
+  mutate(
+    InnOuts = InnOuts.x + InnOuts.y,
+    PO = PO.x + PO.y,
+    A = A.x + A.y,
+    E = E.x + E.y,
+    DP = DP.x + DP.y
+  ) %>% 
+  select(yearID, teamID, lgID, InnOuts, PO, A, E, DP, PB, WP, SB, CS, ZR)
+
+
+
+#Create a master Fielding dataset similar to Teams but for fielding data by combining infield #and outfield stats
+
+Player_Inf_Out_Fielding <- Player_Inf_Out_Fielding %>% 
+  mutate(G = G.x + G.y,
+         GS = GS.x + GS.y,
+         InnOuts = InnOuts.x + InnOuts.y,
+         PO = PO.x + PO.y,
+         A = A.x + A.y,
+         E = E.x + E.y,
+         DP = DP.x + DP.y,
+         PB = PB.x + PB.y,
+         WP = WP.x + WP.y,
+         SB = SB.x + SB.y,
+         CS = CS.x + CS.y,
+         ZR = ZR.x + ZR.y) %>% 
+  select(playerID, yearID, G, GS, InnOuts, PO, A, E, DP, PB, WP, SB, CS, ZR)
+
+
+
+#Join pitching dataset with infield and outfield dataset. Remove unnecessary colums such as, #games played and games started
+
+Player_Pitching <- Pitching %>% 
+  group_by(playerID, yearID) %>% 
+  summarize(
+    W = sum(W),
+    L = sum(L),
+    G = sum(G),
+    GS = sum(GS),
+    CG = sum(CG),
+    SHO = sum(SHO),
+    SV = sum(SV),
+    IPouts = sum(IPouts),
+    H = sum(H),
+    ER = sum(ER),
+    HR = sum(HR),
+    BB = sum(BB),
+    SO = sum(SO),
+    IBB = sum(IBB),
+    WP = sum(WP),
+    HBP = sum(HBP),
+    BK = sum(BK),
+    BFP = sum(BFP),
+    GF = sum(GF),
+    R = sum(R),
+    SH = sum(SH),
+    SF = sum(SF),
+    GIDP = sum(GIDP)
+  )
+
+Player_Pitch_Inf_Out_Fielding <- Player_Pitching %>% 
+  full_join(Player_Inf_Out_Fielding, by = c("playerID","yearID")) %>% 
+  arrange(yearID) %>% 
+  select(!c(G.x,G.y,GS.x,GS.y,ZR))
+
+Player_Pitch_Inf_Out_Fielding <- Player_Pitch_Inf_Out_Fielding %>%
+  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>% 
+  mutate(across(where(is.logical), ~ ifelse(is.na(.), 0, .)))
+
+
+
+Team_Pitching <-  Pitching %>% 
+  group_by(yearID, teamID, lgID) %>% 
+  summarize(
+    CG = sum(CG),
+    SHO = sum(SHO),
+    SV = sum(SV),
+    IPouts = sum(IPouts),
+    H = sum(H),
+    ER = sum(ER),
+    HR = sum(HR),
+    BB = sum(BB),
+    SO = sum(SO),
+    IBB = sum(IBB),
+    WP = sum(WP),
+    HBP = sum(HBP),
+    BK = sum(BK),
+    BFP = sum(BFP),
+    GF = sum(GF),
+    R = sum(R),
+    SH = sum(SH),
+    SF = sum(SF),
+    GIDP = sum(GIDP)
+  )
+
+
+
+Team_Defense <-  Team_Full_Fielding %>% 
+  full_join(Team_Pitching, by = join_by("yearID", "teamID", "lgID")) %>% 
+  mutate(WP = WP.x + WP.y) %>% 
+  select(!c(WP.x,WP.y))
+
+
+
+Player_Pitch_Inf_Out_Fielding <- Player_Pitch_Inf_Out_Fielding %>% 
+  mutate(WP = WP.x+WP.y) %>% 
+  select(!c(WP.x,WP.y))
+
+
+
+Teams_RA <- Teams %>% 
+  select(yearID, teamID, RA, W, L) %>% 
+  mutate(WinPct = W/(W+L))
+
+
+
+Team_Defense <- Team_Defense %>% 
+  full_join(Teams_RA, by = join_by("yearID", "teamID")) %>% 
+  select(yearID, teamID, lgID, RA, W, L, WinPct, everything())
+```
+
+```{r}
+#| message: false
+#Salary alterations
+
+
+#invisible command is to stop the incredible annoying and random output
+invisible(getSymbols("CPIAUCSL", src='FRED'))
+avg.cpi <- apply.yearly(CPIAUCSL, mean)
+cf <- avg.cpi/as.numeric(avg.cpi['2016'])
+
+
+cf2 <- cf %>% 
+  fortify.zoo() %>% 
+  as_tibble() %>% 
+  mutate(yearID = as.numeric(as.character(substr(Index, 1, 4)))) %>% 
+  filter(yearID >= 1985 & yearID <= 2016)
+
+
+
+RealSalaries <- Salaries %>% 
+  full_join(cf2, by = join_by("yearID")) %>% 
+  mutate(realSalary = salary / CPIAUCSL) %>% 
+  filter(realSalary > 0) %>% 
+  select(!Index)
+
+
+
+TeamCost <- RealSalaries %>% 
+  group_by(yearID, teamID) %>% 
+  summarize(TeamCost = sum(realSalary))
+
+
+
+New_Teams <- Teams %>% 
+  full_join(TeamCost, by = c("yearID", "teamID")) %>% 
+  select(yearID, teamID, lgID, W, L, R, RA, TeamCost, everything())
+
+
+
+NewSalaries <- RealSalaries %>% 
+  group_by(yearID, playerID) %>% 
+  summarise(realSalary = sum(realSalary))
+
+
+calc_att <- function(j) {
+  return(0.012246*j)
+}
+
+NewSalaries <-  NewSalaries %>% 
+  mutate(xAtt = calc_att(realSalary))
+```
+
+```{r}
+#New Teams
+
+#Combine Teams Offense and Defense and keep helpful variables
+Full_Teams <- Teams %>% 
+  full_join(Team_Defense, by = join_by("yearID", "teamID", "lgID", "RA", "W", "L", "IPouts")) %>% 
+  mutate(WinPct = (W/(W+L)) * 100, .after = teamID) %>% 
+  select(!c(ERA, CG.x, SHO.x, SV.x, HA, HRA, BBA, SOA, E.x, DP.x, FP, name, park, teamIDBR, teamIDlahman45, teamIDretro))
+```
+
+```{r}
+Player_Full <- Player_Batting %>% 
+  full_join(Player_Pitch_Inf_Out_Fielding, by = join_by("playerID", "yearID"))
+```
+
+```{r}
+#| eval: false
+winpct_reg <- lm(data = Full_Teams, WinPct ~ X1B + X2B + X3B + HR.x + BB.x + SB.x + HBP.x + SF.x + E.y + PB + SB.y + H.y + HR.y + BB.y + SH + yearID + teamID) 
+
+summary(winpct_reg)
+```
+
+```{r}
+winpct_reg <- lm(data = Full_Teams, WinPct ~ X1B + X2B + X3B + HR.x + BB.x + SB.x + HBP.x + SF.x + E.y + PB + SB.y + H.y + HR.y + BB.y + SH + yearID + teamID) 
+
+
+calc_PlayerWinPct <- function(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) {
+  return(
+           a*winpct_reg$coefficients["X1B"] + 
+           b*winpct_reg$coefficients["X2B"] + 
+           c*winpct_reg$coefficients["X3B"] + 
+           d*winpct_reg$coefficients["HR.x"] + 
+           e*winpct_reg$coefficients["BB.x"] + 
+           f*winpct_reg$coefficients["SB.x"] + 
+           g*winpct_reg$coefficients["HBP.x"] +
+           h*winpct_reg$coefficients["SF.x"] +
+           i*winpct_reg$coefficients["E.y"] +
+           j*winpct_reg$coefficients["PB"] +
+           k*winpct_reg$coefficients["SB.y"] +
+           l*winpct_reg$coefficients["H.y"] +
+           m*winpct_reg$coefficients["HR.y"] +
+           n*winpct_reg$coefficients["BB.y"] +
+           o*winpct_reg$coefficients["SH"]
+           )
+}
+```
+
+```{r}
+#| output: false
+rc_reg <- feols(data = Teams, R~X1B+X2B+X3B+HR+SF+BB+SB+CS+HBP| yearID+teamID)
+
+rc_reg
+```
+
+```{r}
+calc_RC <- function(a, b, c, d, e, f, g, h, i) {
+  return((0.466983*a)+(0.713263*b)+(1.098681*c)+(1.417448*d)+(0.747903*e)+(0.310546*f)+(0.202082*g)+(-0.170918*h)+(0.418967*i))
+}
+```
+
+```{r}
+#| output: false
+rs_reg <- lm(data = Team_Defense, RA ~ E + SB + IPouts + H + HR + IBB + BFP + SF + WP + yearID + teamID) 
+
+rs_reg %>% 
+  summary()
+```
+
+```{r}
+calc_RS <- function(z,y,x,w,v,u,t,s,r) {
+  return((0.22455*z)+(.13896*y)+(-0.46174*x)+(0.22669*w)+(0.85910*v)+(-0.16496*u)+(0.35111*t)+(0.58545*s)+(0.24219*r))
+}
+```
+
+```{r}
+#| output: false
+attCost_reg <- lm(data = New_Teams, attendance ~ TeamCost + yearID + teamID)
+
+attCost_reg %>% 
+  summary()
+```
+
+```{r}
+calc_att <- function(j) {
+  return(0.012246*j)
+}
+```
+
+```{r}
+#| output: false
+attRSRC_reg <- feols(data = Teams, attendance ~ R + RA | yearID + teamID)
+
+attRSRC_reg
+```
+
+```{r}
+calc_att <- function(p, q) {
+  return((2801.92*p)+(-2575.09*q))
+}
+```
+
+```{r}
+#| output: false
+attWinPct_reg <- lm(data = Teams, attendance ~ WinPct + yearID + teamID) 
+
+attWinPct_reg %>% 
+  summary()
+```
+
+```{r}
+#Estimating MRPL using WinPct
+
+Player_Full <-  Player_Full %>% 
+  mutate(DWinPct = calc_PlayerWinPct(X1B, X2B, X3B, HR.x, BB.x, SB.x, HBP.x, SF.x, E, PB, SB.y, H.y, HR.y, BB.y, SH.y), .after = yearID) 
+
+Player_WinPct <- Player_Full %>% 
+  select(playerID, yearID, DWinPct) %>% 
+  mutate(att = 40959*DWinPct)
+```
+
+```{r}
+#Estimating MRPL using RC and RS
+
+RC_Batting <- Player_Batting %>% 
+  mutate(RC = calc_RC(X1B, X2B, X3B, HR, SF, BB, SB, CS, HBP), .after = yearID) %>% 
+  select(playerID, yearID, RC)
+
+RS_Defense <- Player_Pitch_Inf_Out_Fielding %>% 
+  mutate(RS = calc_RS(E, SB, IPouts, H, HR, IBB, BFP, SF, WP), .after = yearID) %>% 
+  select(playerID, yearID, RS)
+
+Full_RS_RC <- RS_Defense %>% 
+  full_join(RC_Batting, by = c("playerID", "yearID")) %>%
+  #Make NA's into 0 for players who only DH'ed in the season
+  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .)))
+
+Full_RS_RC <- Full_RS_RC %>% 
+  mutate(att = calc_att(RC, RS))
+```
+
+## Data {#sec-Data}
+
+There are two sources from which data were gathered. The first source was the Lahman database [@Lahman_cit] which has records on every MLB team and player from the 1871 to 2022 season. Team and player performance, salaries, and attendance data was aggregated, regressed, and computed from here. This analysis considers observations from the 1985 to 2016 seasons because that was the range of years that salary information was available in the Lahman database. Access to the Lahman database came from the R package "Lahman" [@r_lang_cit; @Lahman_cit].
+
+The other source used was a consumer price index (CPI) accessed through the "quantmod" R package [@quantmod_cit]. The specific CPI used was the CPIAUCSL which is a CPI designed for all urban consumers and is gathered from the Federal Reserve Bank of St. Louis. Using an urban consumer CPI is appropriate because MLB teams are often present in urban metropolitan environments. The CPIAUCSL was used to adjust player salaries to what their value would be in 2016 dollars. All salaries were converted to real 2016 dollars before being used in an analysis of any capacity.
+
+All computations were done with the R statistical software version 4.2.2 [@r_lang_cit]. Data manipulation and graphing were done using both R and the "tidyverse" package [@r_lang_cit; @tidyverse_cit]. Fixed effects regressions were made using the "fixest" package [@fixest_cit] and displayed using the "modelsummary" package [@model_summary_cit].
+
+## Win Maximization Results {#sec-WinMaximizationResults}
+
+As discussed in the methodology section, calculating the MRP for each player using the win percentage method first requires two regressions to be run. The first is finding what effect offensive and defense outcomes have on a team's ability to win. And the second is how changes in winning affect fan attendance. The theoretical regression of offensive and defensive outcomes effect on winning has already been outlined in @eq-MyWPCTPERFReg. In @eq-MyAttWPCTReg we use $\Gamma_1$ and $PERF_{I,J}$ as placeholders representing all the variables tested and their associated effects on the $I$th team's win percentage in year $J$. To see which outcomes were selected and their magnitudes refer to @tbl-WinPctSum. The dependent variable, Win Percentage, is expressed as a real number on the interval [0-100]. While this may appear initially to be an appropriate situation to use a logistic regression, it is unequivocally not for several reasons. The first is that there is no precedent from any previous literature to use a logistic regression. The second, is that logistic regressions are used to predict probabilities and winning percentage is not a probability, it is a summary. Therefore, win percentage in this scenario can be thought of just as a value between [0,100], just as any other dependent variable. Thus, it a standard OLS regression is a much more appropriate choice. Therefore, understanding the coefficients is straightforward since a linear regression was used. For example, from @tbl-WinPctSum we are able to determine that an additional home run hit for a team (HR.x) is associated with an increase of 0.1% in the team's winning percentage for that year. An important note for understanding the variable names, all variables from X1B to SF.x are offensive outcomes done by team $I$ in year $J$ while all variables from E.y to SH are defensive outcomes for team $I$ in year $J$. For more information on exactly what each variable entails, refer to the Lahman database website [@Lahman_cit]. We find this regression is able to describe the impact that offensive and defensive outcomes have on a team's ability to win quite well. Represented as the quite large adjusted $R^2$ value of 0.8.
+
+The second model used in the win maximization method was the effect that win percentage had on attendance. The theoretical regression has already been outlined in @eq-MyAttWPCTReg. To see the values for $\Omega_1$ refer to @tbl-AttSum. The variable $WPCT_{I,J}$ is the $I$th team's winning percentage, expressed as a real number on the interval \[0-100\], in year $J$. While $\Omega_1$ is the associated effect that we find an additional percentage point in win percentage has on fan attendance in a year. It is understood that $\Omega_1$'s value implies that there is an associated effect of about an additional 41,000 fans attending a stadium in a given year for an increase in the team's winning percentage by 1 point. We find that this describes the variation in attendance fairly well with an adjusted $R^2$ value of 0.57.
+
+One final step must be briefly completed before estimating players' MRP. It is necessary to convert players' salaries into attendance, as discussed in @sec-AttToWageMethod, so that comparison to player contracts is possible to determine market efficiency. The theoretical model for this has already been described in @eq-AttendancePayrollReg. Furthermore, the value for $\widehat{\zeta_1}$ can be seen in @tbl-OtherSum. Now it is possible to discuss player output and compensation in the same units and thus, we can estimate the market efficiency.
+
+With the effects calculated it is now possible to estimate players' MRP. Calculating the MRP for a player is simple, just take the amount of outcomes that player has and multiply it with the associated weights found in @tbl-WinPctSum. We can call this value $\Delta WPCT$ since it represents how much a player changes their team's win percentage in a given year. Then, we can take this $\Delta WPCT$ and substitute it into @eq-MyAttWPCTReg with the weights found in @tbl-AttSum and gain the estimate of the player's MRP in a given year. To find if they are being compensated fairly we take their salary data for the same year and input it into @eq-AttendancePayrollReg whose weight can be found in @tbl-OtherSum. Thus we have calculated the cost for ownership to employ a certain player that year. Finding market efficiency is a simple ratio taken from previous literature [@scully_pay_1974; @krautmann_whats_1999], which says to divide MRP, in attendance, by salary, also in attendance. A horizontal dashed line has been added at the $y=1$ level to represent what we would expect to see if the market were perfectly competitive and players were paid their MRP. We expect a perfectly competitive market to have a ratio equal to 1 since in a perfectly competitive market laborers are paid their MRP. We expect that if laborers are under monopsony hiring power that this ratio be greater than 1. We expect that laborers who have formed a monopoly, such as a labor union, to have a ratio less than 1. @fig-LeagueWPCT describes the mean MRP in MLB from 1985-2016 across all contract types. It is obvious from the graph that using the win percentage method leads to the conclusion that MLB players have been over-paid for the entirety of years considered. This supports the findings of previous literature [@krautmann_whats_1999; @pinheiro_all_2022] which also found players were overpaid. However, included in the graph are six vertical dashed lines which represent new Collective Bargaining Agreements (CBA) between the MLB Player's Association (MLBPA) and the ownership group. Almost all of the signings of these CBA's were first met with a strike by players until the ownership groups gave in. This does not agree with our increased understanding of labor's bargaining power increasing when and after striking [@riddell_effects_1980; @lacroix_microeconometric_1986; @card_strikes_1990].
+
+We even find that breaking down market efficiency by contract type does not help. @fig-ContractWPCT breaks down MLB contracts into three types. Monopsony, which is all players who have between 0-3 years of playing experience since their debut. This should be the group that gets exploited the most because owners have no obligation to pay them anything above league minimum. Then there is the Arbitration group which is players who have between 4-6 years of playing experience since their debut. If a player feels that they are being unfairly compensated then they can go in front of a judge and plead their case. This gives this contract group a small amount of bargaining power but still not much. The final group is called Free Agents. This group of players has been playing in MLB for over 6 years. They can sign a contract with whichever team they desire for anything equal to or above league minimum. Usually, only players who are above average stay in MLB for more than six years which means that these players will often demand lofty salaries to compensate for their high level of play. Thus, we would expect them to be the least profitable group because of the winner's curse [@andreff_handbook_2006]. Obviously, this is a over generalization of the complexity that exists in the CBA which dictates exactly how each player's negotiating rights is handled depending on playing seniority. However, breaking down the contracts into these groups illistrates the most important changes in bargaining power throughout a player's career. Instead, in @fig-ContractWPCT we find that the group with no negotiating power (Monopsony) is somehow the one that is being overpaid the most by an incredibly large multitude every year. And the difference in bargaining power seems to have no effect on compensation amount between the Free Agent and Arbitration which disagrees with previous literature [@siddhartha_equilibrium_2002]. Overall, while the math works out and we can agree with the previous literature on this topic, we find that our intuition is leading us in another direction. Thus, consider the utility method.
+
+## Utility Maximization Results {#sec-UtilityResults}
+
+Calculating the marginal revenue product of labor for players using the utility maximization method is slightly more complex than it was for the win maximization method. The approach used is outlined in @sec-UtilityMethod. In @eq-MyRSRCReg we outlined the fixed effects regression that we would use and the results of it can be seen in @tbl-AttSum. Since it was a linear regression understanding the output is straightforward. Our model predicts that for every additional run scored by team $I$ in year $J$, team $I$ can expect about an additional 2,800 fans in attendance in year $J$. Similarly, for every additional run scored against team $I$ in year $J$ we can expect team $I$ to have about 2,600 less fans in attendance in year $J$. An interesting note, the adjusted $R^2$ value is slightly higher for this model compared to the win maximization model in @tbl-AttSum. The difference is quite small but it could possibly be due to the better explanatory power that game quality and contention has on consumer behavior compared with wins [@borland_demand_2003].
+
+Estimates must also be gathered for the weights of the $\phi$'s in @eq-RAReg and $\beta$'s in @eq-RReg so player quality can be measured. We used the variables $Pitching$ and $Fielding$ in @eq-RAReg and the variables $Hitting$ and $Baserunning$ in @eq-RReg to generally represent the different offensive and defensive outcomes considered. The variables that were ultimately included and their associated weights are shown in @tbl-RSRCSum. An important note is that while some variables share the same name in the regressions they are not the same variable. Take, for example $SB$; for the regression titled $RS$ it can be understood that this variable represents the effect stolen bases against has on a teams ability to prevent runs from being scored. While for the regression $RC$ the variable represents the effect that stealing a base has on a team's ability to score runs.
+
+As discussed in @sec-WinMaximizationResults, we can use the fixed effects @eq-AttendancePayrollReg to estimate what owners expected players to bring in. This regression can be viewed in @tbl-OtherSum. We can multiply a player's salary that has been adjusted for inflation with the value of $\widehat{\zeta_1}$ to find what we predict the owners anticipated the player would bring in for attendance.
+
+Calculating a player's MRP using this method has been lightly outlined in @sec-UtilityMethod. Simply take the outcomes of each player and multiply them with the weights found in @tbl-RSRCSum. This will provide an $RS$ and an $RC$ for each player. To compute the effect each player had on attendance use @eq-MyRSRCReg with the weights found in @tbl-AttSum. Then input $RS$ for $RA$ and $RC$ for $R$ into @eq-MyRSRCReg to generate how each player's MRP in a given year.
+
+Determining the efficiency for each player is quite simple. Take the ratio of the player's MRP divided by their wage in terms of attendance. To see if the market is working efficiently take the mean of the MRP ratios of every player in a year. The change in the mean ratios is outlined in @fig-LeagueRSRC. A horizontal dashed line has been added at the $y=1$ level to represent what we would expect to see if the market were perfectly competitive and players were paid their MRP. Additionally, there are vertical dashed lines which represent every CBA from 1985-2016 and were often met with a strike from MLB players. Considering again what previous literature says about strikes, it makes sense that every year there was a new CBA and a strike that we would see ownership exploiting players less and reaching a market wide level where players were being paid their MRP [@riddell_effects_1980; @lacroix_microeconometric_1986; @card_strikes_1990].
+
+Consider instead how the market efficiency is when breaking down player by which contract type they have (Monopsony, Arbitration, or Free Agency). We can see from @fig-ContractRSRC that when our using the $RS+RC$ method the results follow our intuition. We see that the Monopsony group, which has the least ability to negotiate pay, is the one with the highest exploitation rate. While the Free Agency group which has the most bargaining rights has the least level of owner exploitation. Even, sometimes, exploiting the owners themselves. Not only are our findings consistent with the literature concerning strikes [@riddell_effects_1980; @lacroix_microeconometric_1986; @card_strikes_1990], but our findings also support our idea of how bilateral monopolies split profits [@siddhartha_equilibrium_2002]. We see that for Monopsony players when a new CBA is agreed on their rate of exploitation decreases, pointing to the sensitivity that bilateral monopolies face in shifts in bargaining power.
+
+# Conclusion and Directions for Further Research
+
+In conclusion, we find that we can replicate the findings of previous literature that players are overpaid when using the win maximization hypothesis [@krautmann_whats_1999]. We also confirm previous literature's hypothesis that finds estimation of MRPL is extremely sensitive to measuring techniques and has drastic effects on interpretation of efficiency over the considered timeline [@krautmann_whats_1999]. However, we find that when examining the results of the win maximization hypothesis over a long period of time disagrees with our intuition and understanding of both negotiation power in labor strikes [@riddell_effects_1980; @lacroix_microeconometric_1986; @card_strikes_1990] and the functioning of bilateral monopolies when not vertically integrated [@siddhartha_equilibrium_2002]. Conversely, we find that using the utility maximization hypothesis allows us to remedy the previously mentioned errors in previous literature. This is not to say this paper's methodology is perfect or that it gives the final say on the subject. There were many simplifying assumptions that were made which makes extrapolation difficult. Improvement in data quality and availability are the two most prevalent problems that this paper faced. For example, were the revenue for each team accurately reported there would not have been a need to measure player MRPL in terms of change in attendance nor the need to convert player salary in terms of attendance. Additionally, the availability of salary data prevented using very accurate measurement of player quality using more advanced analytics since only recently has technological adoption become commonplace for MLB teams. Using advanced analytics such as openWAR would have allowed for even more accurate performance evaluations of players but salary data was not available over that time [@baumer_openwar_2015]. However, the main argument that this paper puts forth is that there exists a better structure from which future research can be done to find if the MLB labor market is acting efficiently.
+
+# References
+
+::: {#refs}
+:::
+
+# Tables
+
+```{r}
+#| label: tbl-WinPctSum
+#| tbl-cap: "WPCT Regression"
+modelsummary(models = list("WinPct" = winpct_reg),
+             fmt = 2,
+             coef_omit = c("teamID|yearID"),
+             coef_rename = c("(Intercept)" = "Constant"),
+             gof_map = list(
+               list("raw" = "nobs", "clean" = "N", "fmt" = 0),
+               list("raw" = "adj.r.squared", "clean" = "Adj. $R^2$", "fmt"=2),
+               list("raw" = "rmse", "clean" = "SER", "fmt" = 2)
+             ),
+             escape = FALSE,
+             stars = c('*' = .05, '**' = .01, '***' = 0.001)
+             )
+```
+
+```{r}
+#| label: tbl-RSRCSum
+#| tbl-cap: "RS & RC Regressions"
+modelsummary(models = list("RS" = rs_reg,
+                           "RC" = rc_reg),
+             fmt = 2,
+             coef_omit = c("teamID|yearID"),
+             coef_rename = c("(Intercept)" = "Constant"),
+             gof_map = list(
+               list("raw" = "nobs", "clean" = "N", "fmt" = 0),
+               list("raw" = "adj.r.squared", "clean" = "Adj. $R^2$", "fmt"=2),
+               list("raw" = "rmse", "clean" = "SER", "fmt" = 2)
+             ),
+             escape = FALSE,
+             stars = c('*' = .05, '**' = .01, '***' = 0.001)
+             )
+```
+
+```{r}
+#| label: tbl-AttSum
+#| tbl-cap: "Attendance Regressions"
+modelsummary(models = list("AttWPCT" = attWinPct_reg,
+                           "AttRSRC" = attRSRC_reg),
+             fmt = 2,
+             coef_omit = c("teamID|yearID"),
+             coef_rename = c("(Intercept)" = "Constant"),
+             gof_map = list(
+               list("raw" = "nobs", "clean" = "N", "fmt" = 0),
+               list("raw" = "adj.r.squared", "clean" = "Adj. $R^2$", "fmt"=2),
+               list("raw" = "rmse", "clean" = "SER", "fmt" = 2)
+             ),
+             escape = FALSE,
+             stars = c('*' = .05, '**' = .01, '***' = 0.001)
+             )
+```
+
+```{r}
+#| label: tbl-OtherSum
+#| tbl-cap: "Other Regressions"
+modelsummary(models = list("AttCost" = attCost_reg),
+             fmt = 2,
+             coef_omit = c("teamID|yearID"),
+             coef_rename = c("(Intercept)" = "Constant"),
+             gof_map = list(
+               list("raw" = "nobs", "clean" = "N", "fmt" = 0),
+               list("raw" = "adj.r.squared", "clean" = "Adj. $R^2$", "fmt"=2),
+               list("raw" = "rmse", "clean" = "SER", "fmt" = 2)
+             ),
+             escape = FALSE,
+             stars = c('*' = .05, '**' = .01, '***' = 0.001)
+             )
+```
+
+# Graphs
+
+```{r}
+#| label: fig-LeagueRSRC
+#| fig-cap: "MRPL Profit Ratio for Ownership from 1985-2016"
+Full_RS_RC <-  Full_RS_RC %>% 
+  right_join(NewSalaries, by = join_by("playerID", "yearID")) %>% 
+  mutate(PCTMRP = att/xAtt)
+
+PCTMRP_RS_RC <-  Full_RS_RC %>% 
+  group_by(yearID) %>% 
+  summarize(RS = sum(RS, na.rm = T),
+            RC = sum(RC, na.rm = T),
+            att = sum(att, na.rm = T),
+            xAtt = sum(xAtt, na.rm = T)) %>% 
+  mutate(PCTMRP = att / xAtt)
+
+ggplot(data = PCTMRP_RS_RC)+
+  aes(x=yearID, y=PCTMRP)+
+  geom_line()+
+  geom_point()+
+  #Half's are added because negotiations take place between seasons
+  geom_vline(xintercept = 1989.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 1993.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 1996.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2000.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2006.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2011.5, linetype="12345678", alpha=.5)+
+  #geom_vline(xintercept = 2004, color="red")+
+  ylim(c(0,5.2))+
+  geom_hline(linetype=2, alpha = .8, yintercept = 1)+
+  scale_x_continuous(n.breaks = 8)+
+  labs(title = "MRPL Profit Ratio for Ownership from 1985-2016",
+       subtitle = "Method: RC+RS",
+       caption = "Data from Lahman and CPIAUCSL",
+       x="Year",
+       y="MRPL Ratio")+
+  theme(text = element_text(family="Times New Roman"))
+```
+
+```{r}
+Player_WinPct <-  Player_WinPct %>% 
+  right_join(NewSalaries, by = join_by("playerID", "yearID")) %>% 
+  mutate(PCTMRP = att/xAtt)
+
+PCTMRP_WinPct <-  Player_WinPct %>% 
+  filter(!is.na(att)) %>% 
+  group_by(yearID) %>% 
+  summarize(xAtt = sum(xAtt),
+            att = sum(att)) %>% 
+  mutate(PCTMRP = att/xAtt)
+```
+
+```{r}
+#| label: fig-LeagueWPCT
+#| fig-cap: "MRPL Profit Ratio for Ownership from 1985-2016"
+#| message: false
+ggplot(data = PCTMRP_WinPct)+
+  aes(x=yearID, y=PCTMRP)+
+  geom_line()+
+  geom_point()+
+  #Half's are added because negotiations take place between seasons
+  geom_vline(xintercept = 1989.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 1993.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 1996.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2000.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2006.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2011.5, linetype="12345678", alpha=.5)+
+  scale_x_continuous(n.breaks = 8)+
+  ylim(c(-.1,1.1))+
+  scale_y_continuous(n.breaks = 8)+
+  geom_hline(linetype=2, alpha = .8, yintercept = 1)+
+  #geom_vline(xintercept = 2004, color="red")+
+  labs(title = "MRPL Profit Ratio for Ownership from 1985-2016",
+       subtitle = "Method: WinPct",
+       caption = "Data from Lahman and CPIAUCSL",
+       x="Year",
+       y="MRPL Ratio")+
+  theme(text = element_text(family="Times New Roman"))
+```
+
+```{r}
+Debut <- People %>% 
+  select(playerID, debut) %>% 
+  mutate(debut = as.numeric(substring(debut, 1, 4)))
+```
+
+```{r}
+#| message: false
+Salary_RS_RC <-  Debut %>% 
+  right_join(Full_RS_RC, by = join_by("playerID")) %>% 
+  mutate(xp = yearID - debut, .after = debut) %>% 
+  select(!debut) %>% 
+  filter(!is.na(att))
+
+Salary_RS_RC <- Salary_RS_RC %>% 
+  mutate(Contract = case_when((xp <= 3) ~ "Monopsony",
+                              (xp <= 6) ~ "Arbitration",
+                              (xp > 6) ~ "FreeAgent"), .after = xp) %>% 
+  mutate(Contract = as.factor(Contract))
+
+RS_RC_Contract_DF <- Salary_RS_RC %>% 
+  group_by(yearID, Contract) %>% 
+  summarize(att = sum(att),
+            xAtt = sum(xAtt)) %>% 
+  mutate(PCTMRP = att / xAtt,
+         Pct_MRP = xAtt / att)
+```
+
+```{r}
+#| label: fig-ContractRSRC
+#| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
+ggplot(data = RS_RC_Contract_DF)+
+  aes(x=yearID, y=PCTMRP)+
+  geom_line(aes(color=Contract))+
+  geom_point(aes(color=Contract))+
+  geom_vline(xintercept = c(1989.5,1993.5,1996.5,2000.5,2006.5,2011.5), linetype="12345678", alpha=.5)+
+  ylim(c(-1,14))+
+  scale_x_continuous(n.breaks = 8)+
+  scale_color_manual(values=c("#601A4A", "#EE442F", "#63ACBE"))+
+  geom_hline(yintercept = 1, color="black", linetype=2)+
+  labs(title = "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016",
+       subtitle = "Method: RS+RC",
+       caption = "Data from Lahman and CPIAUCSL",
+       x="Year",
+       y="MRPL Ratio")+
+  theme(text = element_text(family = "Times New Roman"))
+```
+
+```{r}
+#| message: false
+
+#Might need to fix something here because graph didn't come out right.
+Salary_WinPct <-  Debut %>% 
+  right_join(Player_WinPct, by = join_by("playerID")) %>% 
+  mutate(xp = yearID - debut, .after = debut) %>% 
+  select(!debut) %>% 
+  filter(!is.na(att))
+
+Salary_WinPct <- Salary_WinPct %>% 
+  mutate(Contract = case_when((xp <= 3) ~ "Monopsony",
+                              (xp <= 6) ~ "Arbitration",
+                              (xp > 6) ~ "FreeAgent"), .after = xp) %>% 
+  mutate(Contract = as.factor(Contract))
+
+WinPct_Contract_DF <- Salary_WinPct %>% 
+  group_by(yearID, Contract) %>% 
+  summarize(att = sum(att),
+            xAtt = sum(xAtt)) %>% 
+  mutate(PCTMRP = att / xAtt)
+```
+
+```{r}
+#| label: fig-ContractWPCT
+#| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
+#Graph for WinPct
+ggplot(data = WinPct_Contract_DF)+
+  aes(x=yearID, y=PCTMRP, color=Contract)+
+  geom_point()+
+  geom_line()+
+  geom_vline(xintercept = c(1989.5,1993.5,1996.5,2000.5,2006.5,2011.5), linetype="12345678", alpha=.5)+
+  scale_color_manual(values=c("#601A4A", "#EE442F", "#63ACBE"))+
+  geom_hline(yintercept=1, color="black", linetype=2)+
+  scale_x_continuous(n.breaks = 8)+
+  scale_y_continuous(n.breaks = 6)+
+  labs(title = "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016",
+       subtitle = "Method: WinPct",
+       caption = "Data from Lahman and CPIAUCSL",
+       x="Year",
+       y="MRPL Ratio")+
+  theme(text = element_text(family = "Times New Roman"))
+```
+
+```{r}
+
+```
