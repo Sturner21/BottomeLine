@@ -177,6 +177,7 @@ library(fixest)
 library(quantmod)
 library(corrplot)
 library(extrafont)
+library(gtsummary)
 ```
 
 ```{r}
@@ -677,6 +678,7 @@ In conclusion, we find that we can replicate the findings of previous literature
 ::: {#refs}
 :::
 
+::: {#tables}
 # Tables
 
 ```{r}
@@ -703,6 +705,7 @@ modelsummary(models = list("WinPct" = winpct_reg),
 ```{r}
 #| label: tbl-RSRCSum
 #| tbl-cap: "RS & RC Regressions"
+#| keep-with-previous: True
 modelsummary(models = list("RS" = rs_reg,
                            "RC" = rc_reg),
              fmt = 2,
@@ -752,12 +755,19 @@ modelsummary(models = list("AttCost" = attCost_reg),
              stars = c('*' = .05, '**' = .01, '***' = 0.001)
              )
 ```
+:::
 
+\newpage
+
+::: {#graphs}
 # Graphs
 
 ```{r}
 #| label: fig-LeagueRSRC
 #| fig-cap: "MRPL Profit Ratio for Ownership from 1985-2016"
+#| fig-cap-location: top
+#| fig-dpi: 300
+#| fig-height: 2.75
 Full_RS_RC <-  Full_RS_RC %>% 
   right_join(NewSalaries, by = join_by("playerID", "yearID")) %>% 
   mutate(PCTMRP = att/xAtt)
@@ -809,6 +819,9 @@ PCTMRP_WinPct <-  Player_WinPct %>%
 ```{r}
 #| label: fig-LeagueWPCT
 #| fig-cap: "MRPL Profit Ratio for Ownership from 1985-2016"
+#| fig-cap-location: top
+#| fig-dpi: 300
+#| fig-height: 2.75
 #| message: false
 ggplot(data = PCTMRP_WinPct)+
   aes(x=yearID, y=PCTMRP)+
@@ -865,6 +878,8 @@ RS_RC_Contract_DF <- Salary_RS_RC %>%
 ```{r}
 #| label: fig-ContractRSRC
 #| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
+#| fig-cap-location: top
+#| fig-dpi: 300
 ggplot(data = RS_RC_Contract_DF)+
   aes(x=yearID, y=PCTMRP)+
   geom_line(aes(color=Contract))+
@@ -907,7 +922,9 @@ WinPct_Contract_DF <- Salary_WinPct %>%
 
 ```{r}
 #| label: fig-ContractWPCT
+#| fig-cap-location: top
 #| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
+#| fig-dpi: 300
 #Graph for WinPct
 ggplot(data = WinPct_Contract_DF)+
   aes(x=yearID, y=PCTMRP, color=Contract)+
@@ -925,6 +942,7 @@ ggplot(data = WinPct_Contract_DF)+
        y="MRPL Ratio")+
   theme(text = element_text(family = "Times New Roman"))
 ```
+:::
 
 ```{r}
 
