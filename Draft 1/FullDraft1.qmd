@@ -43,78 +43,62 @@ As some economists have previously noticed [@vrooman_baseball_1996, pp. 353], af
 
 ## Marginal Revenue Product of Labor {#sec-MRPLMethod}
 
-Modeling marginal revenue product of labor is simple. Labor's productive ability is not uniform across each worker. Therefore, distinction between laborers and and their marginal production is needed for firms to meet their profit maximizing goals. This can be demonstrated simply in the following equation,
+The motivation for using the marginal revenue product of labor model is simple. Labor's productive ability is not uniform across each worker. Therefore, a model which can differentiate between laborers and and their output is needed for judging individual laborers. This can be demonstrated simply and abstractly in the following equation,
 
 $$
 MRPL = \frac{\Delta R}{\Delta Q}\cdot\frac{\Delta Q}{\Delta L}.
 $$ {#eq-GeneralMRP}
 
-Where $\Delta R$ is the change in revenue due to the $\Delta Q$ change in quantity which is then multiplied by the $\Delta Q$ change in quantity due to the $\Delta L$ change in labor. Under the Neoclassical paradigm, firms will hire an additional laborer until the additional output from that laborer will result in their total marginal revenue equaling their total marginal cost [@brozova_modern_2015].
-
-This approach is not novel in the field of labor economics or industrial organization. Nor is it novel even in the much more specified area of sports economics which we can see from Scully (1974) who is one among the many who have used this model to help estimate the value of professional sports players.
+Where $\Delta R$ is the change in revenue due to the $\Delta Q$ change in quantity which is then multiplied by the $\Delta Q$ change in quantity due to the $\Delta L$ change in labor. The precedent for using this model has already been set by multiple economists considering similar research questions [@scully_pay_1974; @krautmann_whats_1999].
 
 ## Win Maximization Method {#sec-WinMethod}
 
-Scully (1974) uses the marginal revenue product of labor, paired with the win maximization hypothesis, to examine if the labor market for MLB players is behaving efficiently. Scully's estimation of MRPL is estimated by team data in the following equations,
+Scully (1974) uses the marginal revenue product of labor, paired with the win maximization hypothesis, to examine if the labor market for MLB players was behaving efficiently. Scully's estimation of MRPL is estimated by team data in the following equations,
 
 $$
 MRP_{I,J}=\frac{\partial TR_{I,J}}{\partial WPCT_{I,J}}\cdot\frac{\partial WPCT_{I,J}}{\partial PERF_{I,J}}.
 $$ {#eq-ScullyMRP}
 
-Where $\partial TR$ is the change in total revenue for a team $I$ in year $J$ from the $\partial WPCT$ change in win percentage. The $\partial WPCT$ change in win percentage for a team $I$ in year $J$ is due to $\partial PERF$ change in on field performance. Scully estimated the $TR$ of team $I$ in year $J$ with the following regression,
+Where $\partial TR$ is the change in total revenue for a team $I$ in year $J$ from the $\partial WPCT$ change in win percentage. The $\partial WPCT$ change in win percentage for a team $I$ in year $J$ is due to $\partial PERF$ change in on field performance.
 
-$$
-TR_{I,J}=\alpha_0+\alpha_1X_{I,J}+\alpha_2WPCT_{I,J}+\epsilon.
-$$ {#eq-ScullyTRReg}
+A drawback of the Scully's method was highlighted by Krautmann (2013). All MLB teams are privately held firms which means that their financials are not available to the public. Therefore, when Financial World Times and Forbes attempt to estimate each team's revenue it was understood that there would be some error. However, from released court documents during litigation it was revealed that those estimates were off by almost 25% in some cases [@krautmann_what_2013, pp.99]. Since revenue data is not available anywhere else and using it will lead to gross miscalculations, some simplifying assumptions needed to be made. Scully pointed out in his paper that total team revenue was a function of both turnstyle revenue (fans watching game at the stadium) and broadcasting (both television and radio) revenues [@scully_pay_1974, pp.917]. Attendance is a huge factor in turnstyle revenue and it is not a logical leap to claim that it is probably highly correlated with broadcasting revenues. Thus, using attendance as a proxy for revenue appears to be the only way to maintain the integrity of this replication.
 
-In this regression, $X_J$ is a vector of team specific factors that Scully controlled for that could effect team revenue, such as metropolitan population [@scully_pay_1974], and $\alpha_1$ is a generalized term for their coefficients. Scully never references $\alpha_1$ later so its distinction is unnecessary. While $\alpha_2$ is the estimated effect Scully found a thousandth change in win percentage had on team $I$'s total revenue in year $J$. Scully then estimated what the effect of certain performance metrics had on a team's win percentage with the following regression,
-
-$$
-WPCT_{I,J}=\gamma_0+\gamma_1Y_{I,J}+\gamma_2TSA_{I,J}+\gamma_3TSW_{I,J}+\epsilon.
-$$ {#eq-ScullyWinPctReg}
-
-In this regression $Y_{I,J}$ is a vector of team specific factors that Scully controlled for that could effect team performance quality. Scully never investigates their effects further so $\gamma_1$ is used as a placeholder for their coefficients. Scully only differentiated between offense and defense and his statistic for measuring their effect on team $I$'s win percentage in year $J$ was team slugging average (for offense) and team strikeout-to-walk ratio (for defense). $\gamma_2$ represents the associated effect that slugging average had on a team's win percentage as does $\gamma_3$ but for the associated effect strikeout-to-walk ratio had.
-
-After calculating the coefficients estimating an individual player's marginal revenue product of labor is easy. Estimated marginal revenue product is denoted by the hat and described in the following equation,
-
-$$
-\widehat{MRP}=\alpha_2\cdot(\gamma_2\cdot SA)\cdot(\gamma_3\cdot SW).
-$$ {#eq-ScullyPlayerEstimate}
-
-The coefficients $\alpha_2, \gamma_2,$ and $\gamma_3$ have been described above. $SA$ is a hitter's contribution to team slugging average and $SW$ is a pitcher's contribution to team strikeout-to-walk ratio. This allows for a player's MRP to be assigned proportionally depending on their performance.
-
-One drawback of this approach is that it does not account for fielding (such as putouts, assists, or errors) nor baserunning (such as stolen bases) abilities for any players. It also reduces the hitting and pitching performance of a player into two summary statistic which do not explain team win percentage well. @eq-ScullyWinPctReg only has an R-Squared value of about .6 [@scully_pay_1974]. Improvements in sabrmetric (baseball analytics) techniques have shown that this method is not effective for measuring a player's true performance [@baumer_openwar_2015; @pinheiro_all_2022]. Thus, when replicating Scully's method I decided to use different predictors for win percentage which I generally call $PERF$ in @eq-ScullyMRPNew.
-
-An additional drawback of the Scully's method was highlighted by Krautmann (2013). All MLB teams are privately held firms which means that their financials are not available to the public. Therefore, when Financial World Times and Forbes attempt to estimate each team's revenue it was understood that there would be some error. However, from released court documents during litigation it was revealed that those estimates were off by almost 25% in some cases [@krautmann_what_2013, pp.99]. Since revenue data is not available anywhere else and using it will lead to gross miscalculations, some simplifying assumptions needed to be made. Scully pointed out in his paper that total team revenue was a function of both turnstyle revenue (fans watching game at the stadium) and broadcasting (both television and radio) revenues [@scully_pay_1974, pp.917]. Attendance is a huge factor in turnstyle revenue and it is not a logical leap to claim that it is probably highly correlated with broadcasting revenues. Thus, using attendance as a proxy for revenue appears to be the only way to maintain the integrity of this replication.
-
-Therefore, we use the following equation to compare Scully's hypothesis in a more contemporary light,
+Therefore, we use the following equation to consider Scully's hypothesis in a more contemporary light,
 
 $$
 MRP_{I,J}=\frac{\partial Attendance_{I,J}}{\partial WPCT_{I,J}}\cdot\frac{\partial WPCT_{I,J}}{\partial PERF_{I,J}}.
 $$ {#eq-ScullyMRPNew}
 
-To analyze this we will use similar regression methods as Scully. The major difference will be in that we use a fixed effects model instead of controlling for the arbitrary variables as Scully did in @eq-ScullyTRReg and @eq-ScullyWinPctReg. Using a fixed effects model will remove a much larger portion of endogeneity and omitted variable bias. To estimate the effect that team performance outcomes $PERF_{I,J}$ have on the $I$th team's win percentage $WPCT_{I,J}$ in year $J$ can be expressed as,
+Scully estimated the effect $\partial PERF$ had on $\partial WPCT$ for team $I$ in year $J$ using an OLS regression [@scully_pay_1974, pp.919]. To improve on this we can use the following fixed effects regression,
 
 $$
 WPCT_{I,J}=\Gamma_0+\Gamma_1PERF_{I,J}+\alpha_I+\theta_J+\epsilon.
 $$ {#eq-MyWPCTPERFReg}
 
-In @eq-MyWPCTPERFReg, $\Gamma_1$ can be understood as a general coefficient since including all variables that could affect the $I$th team's win percentage in year $J$ would make the equation difficult to interpret. A more detailed discussion of the variables is available in @sec-WinMaximizationResults. The term $\alpha_I$ can be thought of as an intercept term, and its use is similar to the $Y_{I,J}$ that Scully uses in @eq-ScullyWinPctReg, because it is used to control for differences between teams that stay the same each year which might affect win percentage. Examples of this include, but are not limited to, managerial quality, stadium location, etc. While the term $\theta_J$ can be thought of also as an intercept term because it is used to control for things that stay the same for each team but differ year to year. Examples of this are mostly related to league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+In @eq-MyWPCTPERFReg, $\Gamma_1$ can be understood as a general coefficient representing the estimated effect each perfomance statistic has on a team's ability to win. We used $\Gamma_1$ and the general variable $PERF$ becauase including all variables, both considered and used, would make the equation lengthy and difficult to interpret. A more detailed discussion of the variables is available in @sec-WinMaximizationResults. The term $\alpha_I$ can be thought of as an intercept term which is used to control for differences between teams that stay the same each year which might affect win percentage. Examples of this include, but are not limited to, managerial quality, stadium location, etc. While the term $\theta_J$ can be thought of also as an intercept term because it is used to control for things that stay the same for each team but differ year to year. Examples of this are mostly related to league wide rule changes. The benefits of using the fixed effects $\alpha_I$ and $\theta_J$ is that we can remove a lot of endogeneity and omitted variable bias that was present in Scully's analysis. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
 
-To estimate the effect that win percentage $WPCT_{I,J}$ has on team the $I$th team's attendance $Attendance_{I,J}$ in year $J$ can be expressed as,
+We can estimate the effect that win percentage, $WPCT_{I,J}$, has on team the $I$th team's attendance, $Attendance_{I,J}$, in year $J$ in the following fixed effects regression,
 
 $$
 Attendance_{I,J}=\Omega_0+\Omega_1WPCT_{I,J}+\eta_I+\tau_J+\epsilon.
 $$ {#eq-MyAttWPCTReg}
 
-In @eq-MyAttWPCTReg, $\Omega_1$ can be understood as the associated effect that changes in win percentage for the $I$th team in year $J$ have on their attendance. A more detailed discussion of $\Omega_1$ is available in @sec-WinMaximizationResults. The term $\eta_I$ can be thought of as an intercept term similar to $X_{I,J}$ in @eq-ScullyTRReg. This is used to control for factors that differ from team to team but stay the same year over year. This can be thought of as the term that controls for population and fan enthusiasm from team to team. While the term $\tau_J$ is very similar to the term $\theta_J$ in @eq-MyWPCTPERFReg in that it controls for variables which stay the same from team to team but differ from year to year. Most examples of this would be league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+In @eq-MyAttWPCTReg, $\Omega_1$ can be understood as the estimated effect that changes in win percentage for team $I$ in year $J$ have on attendance. A more detailed discussion of $\Omega_1$ is available in @sec-WinMaximizationResults. The term $\eta_I$ can be thought of as an intercept term which controls for factors that differ from team to team but stay the same year over year. An example of this is fan enthusiasm. While the term $\tau_J$ controls for variables which stay the same from team to team but differ from year to year. An example of this is league wide rule changes. Using the fixed effects $\eta_I$ and $\tau_J$ allow for a significant reduction in endogeneity and omitted variable bias. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+
+Ultimately this makes estimating the MRP of each player ($\widehat{MRP}$) into a composite function. After deriving the values of $\Gamma_1$ and $\Omega_1$ the following equation can be used to estimate a player's MRP,
+
+$$
+\widehat{MRP}_{A,W}=\Omega_1\cdot(\Gamma_1\cdot PERF_A).
+$$ {#eq-HatWinMRP}
+
+In @eq-HatWinMRP $\widehat{MRP}_{A,W}$ represents the estimated MRP of player $A$ using the Scully method, $W$. We can calculate the player's MRP using their performance statistics, $PERF_A$ and multiplying that by their associated weights $\Gamma_1$. At this stage we have calculated how the player effects his team's ability to win. Then, we can multiply that by $\Omega_1$ to derive the players estimated effect on attendance, which is ultimately his MRP. The results of this process are outlined in @sec-WinMaximizationResults as well as discussion concerning what statistics were used in $PERF_A$ and their associated weights $\Gamma_1$.
 
 ## Utility Maximization Method {#sec-UtilityMethod}
 
 The utility maximization method is an expansion and revision of the Scully approach. It rejects the assumption that consumers only gain utility, and therefore attend games, to see a team win. More contemporary consumer research has found that while winning has does have an influence on consumer behavior, it is far from the only or best predictor [@borland_demand_2003]. Therefore, a new judgement of player abilities is needed and it must better represent consumer preferences. This paper proposes that scoring runs and preventing runs from being scored against are better predictors for consumer preferences. This aligns better with the previous literature which claims that consumers value quality and contention of games more than winning [@borland_demand_2003]. Thus, using this new method, a player's MRP is the sum of their ability to help their team score runs and prevent their opponent from scoring runs multiplied by the effect this has on attendance. This new method of measuring MRP can be expressed as the following equation,
 
 $$
-MRPL_{I,J}=\frac{\partial Attendance_{I,J}}{\partial (RA+R)_{I,J}}\cdot\frac{\partial (RA+R)_{I,J}}{\partial PERF_{I,J}}.
+MRPL_{I,J}=[\frac{\partial Attendance_{I,J}}{\partial R_{I,J}}\cdot\frac{\partial R_{I,J}}{\partial PERF_{I,J}}]+[\frac{\partial Attendance_{I,J}}{\partial RA_{I,J}}\cdot\frac{\partial RA_{I,J}}{\partial PERF_{I,J}}].
 $$ {#eq-RSRCMRP}
 
 Where for team $I$ in year $J$, the change in attendance $\partial Attendance$ is due to the change in game quality $\partial (RA+R)$ which is in turn due to change in performance outcomes $\partial PERF$. This should look very similar to @eq-ScullyMRPNew because the only difference is the substitution of $\partial WPCT$ with $\partial (RA + R)$ to better account for consumer preferences. Note that MRPL is again measured in attendance instead of dollars because of the problems outlined in @sec-WinMethod.
