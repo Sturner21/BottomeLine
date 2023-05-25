@@ -103,7 +103,7 @@ $$ {#eq-RSRCMRP}
 
 Where for team $I$ in year $J$, the change in attendance $\partial Attendance$ is due to the change in game quality $\partial (RA+R)$ which is in turn due to change in performance outcomes $\partial PERF$. This should look very similar to @eq-ScullyMRPNew because the only difference is the substitution of $\partial WPCT$ with $\partial (RA + R)$ to better account for consumer preferences. Note that MRPL is again measured in attendance instead of dollars because of the problems outlined in @sec-WinMethod.
 
-Similar to Scully in @eq-ScullyTRReg, we can estimate the effect that offensive (scoring runs) and defensive (preventing runs from being scored) quality have on attendance with the following fixed effects regression,
+Similar to @eq-MyAttWPCTReg, we can estimate the effect that offensive (scoring runs) and defensive (preventing runs from being scored) quality have on attendance with the following fixed effects regression,
 
 $$
 Attendance_{I,J}=\mu_0+\mu_1RA_{I,J}+\mu_2R_{I,J}+\psi_I+\lambda_J+\epsilon.
@@ -785,6 +785,8 @@ ggplot(data = PCTMRP_RS_RC)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family="Times New Roman"))
+
+ggsave("RSRCLeague.png")
 ```
 
 ```{r}
@@ -829,6 +831,8 @@ ggplot(data = PCTMRP_WinPct)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family="Times New Roman"))
+
+ggsave("WinPCTLeage.png")
 ```
 
 ```{r}
@@ -879,6 +883,8 @@ ggplot(data = RS_RC_Contract_DF)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family = "Times New Roman"))
+
+ggsave("RSRCContract.png")
 ```
 
 ```{r}
@@ -925,6 +931,7 @@ ggplot(data = WinPct_Contract_DF)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family = "Times New Roman"))
+ggsave("WPCTContract.png")
 ```
 :::
 
