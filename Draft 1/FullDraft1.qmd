@@ -630,15 +630,15 @@ All computations were done with the R statistical software version 4.2.2 [@r_lan
 
 ## Win Maximization Results {#sec-WinMaximizationResults}
 
-As discussed in the methodology section, calculating the MRP for each player using the win percentage method first requires two regressions to be run. The first is finding what effect offensive and defense outcomes have on a team's ability to win. And the second is how changes in winning affect fan attendance. The theoretical regression of offensive and defensive outcomes effect on winning has already been outlined in @eq-MyWPCTPERFReg. In @eq-MyAttWPCTReg we use $\Gamma_1$ and $PERF_{I,J}$ as placeholders representing all the variables tested and their associated effects on the $I$th team's win percentage in year $J$. To see which outcomes were selected and their magnitudes refer to @tbl-WinPctSum. The dependent variable, Win Percentage, is expressed as a real number on the interval [0-100]. While this may appear initially to be an appropriate situation to use a logistic regression, it is unequivocally not for several reasons. The first is that there is no precedent from any previous literature to use a logistic regression. The second, is that logistic regressions are used to predict probabilities and winning percentage is not a probability, it is a summary. Therefore, win percentage in this scenario can be thought of just as a value between [0,100], just as any other dependent variable. Thus, it a standard OLS regression is a much more appropriate choice. Therefore, understanding the coefficients is straightforward since a linear regression was used. For example, from @tbl-WinPctSum we are able to determine that an additional home run hit for a team (HR.x) is associated with an increase of 0.1% in the team's winning percentage for that year. An important note for understanding the variable names, all variables from X1B to SF.x are offensive outcomes done by team $I$ in year $J$ while all variables from E.y to SH are defensive outcomes for team $I$ in year $J$. For more information on exactly what each variable entails, refer to the Lahman database website [@Lahman_cit]. We find this regression is able to describe the impact that offensive and defensive outcomes have on a team's ability to win quite well. Represented as the quite large adjusted $R^2$ value of 0.8.
+As discussed in @sec-WinMethod, calculating the MRP for each player using the win percentage method first requires two regressions to be run. The first regression determines what effect offensive and defense outcomes have on a team's ability to win. And the second determines how changes in winning affect fan attendance. The theoretical regression of the effect offensive and defensive outcomes have on winning has already been outlined in @eq-MyWPCTPERFReg. In @eq-MyAttWPCTReg we use $\Gamma_1$ and $PERF_{I,J}$ as placeholders representing all the variables tested and their associated effects on the $I$th team's win percentage in year $J$. To see which outcomes were selected and their associated weights refer to @tbl-WinPctSum. The dependent variable, Win Percentage, is expressed as a real number on the interval \[0-100\]. While this may appear initially to be an appropriate situation to use a logistic regression, there are several reasons which made the fixed effects regression more appropriate. First, there is no precedent from any previous literature to use a logistic regression\[@scully_pay_1974; @krautmann_whats_1999\]. The second, is that logistic regressions are used to predict binary dependent variables and win percentage is clearly does not have binary outcomes. Thus, a fixed effects regression is a much more appropriate choice. An advantage to using a fixed effects model is that understanding the coefficients is straightforward. For example, from @tbl-WinPctSum we are able to determine that an additional home run (HR.x) hit by team $I$ is associated with an increase of 0.1 in the team's winning percentage for that year. An important note for understanding the variable names, all variables from X1B to SF.x in @tbl-WinPctSum are offensive outcomes done by team $I$ in year $J$ while all variables from E.y to SH are defensive outcomes for team $I$ in year $J$. For more information on exactly what each variable entails, refer to the Lahman database \[@Lahman_cit\]. We find this regression is able to describe the impact that offensive and defensive outcomes have on a team's ability to win quite well. This is represented by the quite large adjusted $R^2$ value of 0.8.
 
-The second model used in the win maximization method was the effect that win percentage had on attendance. The theoretical regression has already been outlined in @eq-MyAttWPCTReg. To see the values for $\Omega_1$ refer to @tbl-AttSum. The variable $WPCT_{I,J}$ is the $I$th team's winning percentage, expressed as a real number on the interval \[0-100\], in year $J$. While $\Omega_1$ is the associated effect that we find an additional percentage point in win percentage has on fan attendance in a year. It is understood that $\Omega_1$'s value implies that there is an associated effect of about an additional 41,000 fans attending a stadium in a given year for an increase in the team's winning percentage by 1 point. We find that this describes the variation in attendance fairly well with an adjusted $R^2$ value of 0.57.
+The second model used in the win maximization method was the effect that win percentage had on attendance. The theoretical regression has already been outlined in @eq-MyAttWPCTReg. To see all values of @eq-MyAttWPCTReg refer to @tbl-AttSum. We find $\Omega_1$ to be about 41,000, which implies an additional point in a team's win percentage is an associated with about an additional 41,000 fans attending that team's game in a given year. We find that this describes the variation in attendance fairly well with an adjusted $R^2$ value of 0.57.
 
 One final step must be briefly completed before estimating players' MRP. It is necessary to convert players' salaries into attendance, as discussed in @sec-AttToWageMethod, so that comparison to player contracts is possible to determine market efficiency. The theoretical model for this has already been described in @eq-AttendancePayrollReg. Furthermore, the value for $\widehat{\zeta_1}$ can be seen in @tbl-OtherSum. Now it is possible to discuss player output and compensation in the same units and thus, we can estimate the market efficiency.
 
-With the effects calculated it is now possible to estimate players' MRP. Calculating the MRP for a player is simple, just take the amount of outcomes that player has and multiply it with the associated weights found in @tbl-WinPctSum. We can call this value $\Delta WPCT$ since it represents how much a player changes their team's win percentage in a given year. Then, we can take this $\Delta WPCT$ and substitute it into @eq-MyAttWPCTReg with the weights found in @tbl-AttSum and gain the estimate of the player's MRP in a given year. To find if they are being compensated fairly we take their salary data for the same year and input it into @eq-AttendancePayrollReg whose weight can be found in @tbl-OtherSum. Thus we have calculated the cost for ownership to employ a certain player that year. Finding market efficiency is a simple ratio taken from previous literature [@scully_pay_1974; @krautmann_whats_1999], which says to divide MRP, in attendance, by salary, also in attendance. A horizontal dashed line has been added at the $y=1$ level to represent what we would expect to see if the market were perfectly competitive and players were paid their MRP. We expect a perfectly competitive market to have a ratio equal to 1 since in a perfectly competitive market laborers are paid their MRP. We expect that if laborers are under monopsony hiring power that this ratio be greater than 1. We expect that laborers who have formed a monopoly, such as a labor union, to have a ratio less than 1. @fig-LeagueWPCT describes the mean MRP in MLB from 1985-2016 across all contract types. It is obvious from the graph that using the win percentage method leads to the conclusion that MLB players have been over-paid for the entirety of years considered. This supports the findings of previous literature [@krautmann_whats_1999; @pinheiro_all_2022] which also found players were overpaid. However, included in the graph are six vertical dashed lines which represent new Collective Bargaining Agreements (CBA) between the MLB Player's Association (MLBPA) and the ownership group. Almost all of the signings of these CBA's were first met with a strike by players until the ownership groups gave in. This does not agree with our increased understanding of labor's bargaining power increasing when and after striking [@riddell_effects_1980; @lacroix_microeconometric_1986; @card_strikes_1990].
+With the weights calculated it is now possible to estimate players' MRP. Calculating the MRP for a player has already been roughly outlined in @eq-HatWinMRP. Simply take the amount of outcomes that a player has for the variables in @tbl-WinPctSum and multiply it with the outcomes' associated weights. We can call this value $\Delta WPCT$ since it represents how much a player changes their team's win percentage in a given year. Then, we can take this $\Delta WPCT$ and substitute it into @eq-MyAttWPCTReg for $WPCT$ with the weights found for $\Omega_1$ in @tbl-AttSum and gain the estimate of the player's MRP in a given year. To find if they are being compensated fairly we take their salary data for the same year and input it into @eq-AttendancePayrollReg and multiply this salary by the value of $\widehat{\zeta}$ which can be found in @tbl-OtherSum. Thus, we have calculated the cost for ownership to employ a certain player that year in terms of attendance. Finding market efficiency is a simple ratio, which has been used in previous literature [@scully_pay_1974; @krautmann_whats_1999]. This ratio is the division of estimated MRP by the wage of the player ( $\frac{MRP}{Wage}$). In a perfectly competitive market we would expect this ratio equal to 1 for all players because in a perfectly competitive market laborers are paid their MRP \[@brozova_modern_2015\]. We expect that if laborers are under monopsony hiring power that this ratio would be greater than 1. We expect that for laborers who have formed a monopoly, such as a labor union, this ratio would be less than 1. @fig-LeagueWPCT describes the mean MRP in MLB from 1985-2016 across all contract types. A horizontal dashed line has been added at the $y=1$ level to represent what we would expect to see if the market were perfectly competitive. This figure suggests that players have been over-paid for the entirety of the years considered. This supports the findings of previous literature \[@krautmann_whats_1999; @pinheiro_all_2022\] which also found players were overpaid. However, included in the graph are six vertical dashed lines which represent new Collective Bargaining Agreements (CBA) between the MLB Player's Association (MLBPA) and the ownership group. Almost all of the signings of these CBA were first met with a strike by players. Previous economic literature would suggest labor's bargaining power increases after striking [@riddell_effects_1980; @lacroix_microeconometric_1986; @card_strikes_1990]. Yet, @fig-LeagueWPCT clearly does not support this conclusion since there is clearly no pattern of MRPL Ratio decreasing after striking. While it is possible that previous literature on strikes is incorrect, it is much more plausible that the findings in @fig-LeagueWPCT are incorrect considering that the assumptions of the win maximization hypothesis are wrong.
 
-We even find that breaking down market efficiency by contract type does not help. @fig-ContractWPCT breaks down MLB contracts into three types. Monopsony, which is all players who have between 0-3 years of playing experience since their debut. This should be the group that gets exploited the most because owners have no obligation to pay them anything above league minimum. Then there is the Arbitration group which is players who have between 4-6 years of playing experience since their debut. If a player feels that they are being unfairly compensated then they can go in front of a judge and plead their case. This gives this contract group a small amount of bargaining power but still not much. The final group is called Free Agents. This group of players has been playing in MLB for over 6 years. They can sign a contract with whichever team they desire for anything equal to or above league minimum. Usually, only players who are above average stay in MLB for more than six years which means that these players will often demand lofty salaries to compensate for their high level of play. Thus, we would expect them to be the least profitable group because of the winner's curse [@andreff_handbook_2006]. Obviously, this is a over generalization of the complexity that exists in the CBA which dictates exactly how each player's negotiating rights is handled depending on playing seniority. However, breaking down the contracts into these groups illistrates the most important changes in bargaining power throughout a player's career. Instead, in @fig-ContractWPCT we find that the group with no negotiating power (Monopsony) is somehow the one that is being overpaid the most by an incredibly large multitude every year. And the difference in bargaining power seems to have no effect on compensation amount between the Free Agent and Arbitration which disagrees with previous literature [@siddhartha_equilibrium_2002]. Overall, while the math works out and we can agree with the previous literature on this topic, we find that our intuition is leading us in another direction. Thus, consider the utility method.
+We even find that breaking down market efficiency by contract type does not help. @fig-ContractWPCT breaks down MLB contracts into three types. Monopsony, which is all players who have between 0-3 years of playing experience since their debut. This should be the group that gets exploited the most because owners have no obligation to pay them anything above league minimum. Then there is the Arbitration group which is players who have between 4-6 years of playing experience since their debut. If a player feels that they are being unfairly compensated then they can go in front of a judge and plead their case. This gives Arbitration players a small amount of bargaining power but still not much. The final group is Free Agents. This group of players has been playing in MLB for over 6 years. They can sign a contract with whichever team they desire for anything equal to or above league minimum. Usually, only players who are above average stay in MLB for more than six years which means that these players will often demand lofty salaries to compensate for their high level of play. Thus, we would expect them to be the least profitable group because of the winner's curse [@andreff_handbook_2006]. Obviously, this is a over generalization of the complexity that exists in the CBA which dictates exactly how each player can negotiate their contract depending on a variety of factors. However, breaking down the contracts into these groups illustrates the most important changes in bargaining power throughout a player's career. Instead, in @fig-ContractWPCT we find that the group with no negotiating power (Monopsony) is somehow the one that is being overpaid the most by an incredibly large multitude for most years. And the difference in bargaining power seems to have no effect on compensation amount between the Free Agent and Arbitration. Overall, this disagrees with previous literature on how profits are split between groups [@siddhartha_equilibrium_2002]. Considering that the win maximization theory has flawed assumptions, and conclusions drawn while using it disagree with other literature from labor economics and industrial organization, it would seem these conclusions should be rejected.
 
 ## Utility Maximization Results {#sec-UtilityResults}
 
@@ -749,47 +749,6 @@ modelsummary(models = list("AttCost" = attCost_reg),
 # Graphs
 
 ```{r}
-#| label: fig-LeagueRSRC
-#| fig-cap: "MRPL Profit Ratio for Ownership from 1985-2016"
-#| fig-cap-location: top
-#| fig-dpi: 300
-#| fig-height: 2.75
-Full_RS_RC <-  Full_RS_RC %>% 
-  right_join(NewSalaries, by = join_by("playerID", "yearID")) %>% 
-  mutate(PCTMRP = att/xAtt)
-
-PCTMRP_RS_RC <-  Full_RS_RC %>% 
-  group_by(yearID) %>% 
-  summarize(RS = sum(RS, na.rm = T),
-            RC = sum(RC, na.rm = T),
-            att = sum(att, na.rm = T),
-            xAtt = sum(xAtt, na.rm = T)) %>% 
-  mutate(PCTMRP = att / xAtt)
-
-ggplot(data = PCTMRP_RS_RC)+
-  aes(x=yearID, y=PCTMRP)+
-  geom_line()+
-  geom_point()+
-  #Half's are added because negotiations take place between seasons
-  geom_vline(xintercept = 1989.5, linetype="12345678", alpha=.5)+
-  geom_vline(xintercept = 1993.5, linetype="12345678", alpha=.5)+
-  geom_vline(xintercept = 1996.5, linetype="12345678", alpha=.5)+
-  geom_vline(xintercept = 2000.5, linetype="12345678", alpha=.5)+
-  geom_vline(xintercept = 2006.5, linetype="12345678", alpha=.5)+
-  geom_vline(xintercept = 2011.5, linetype="12345678", alpha=.5)+
-  #geom_vline(xintercept = 2004, color="red")+
-  ylim(c(0,5.2))+
-  geom_hline(linetype=2, alpha = .8, yintercept = 1)+
-  scale_x_continuous(n.breaks = 8)+
-  labs(title = "MRPL Profit Ratio for Ownership from 1985-2016",
-       subtitle = "Method: RC+RS",
-       caption = "Data from Lahman and CPIAUCSL",
-       x="Year",
-       y="MRPL Ratio")+
-  theme(text = element_text(family="Times New Roman"))
-```
-
-```{r}
 Player_WinPct <-  Player_WinPct %>% 
   right_join(NewSalaries, by = join_by("playerID", "yearID")) %>% 
   mutate(PCTMRP = att/xAtt)
@@ -826,7 +785,7 @@ ggplot(data = PCTMRP_WinPct)+
   geom_hline(linetype=2, alpha = .8, yintercept = 1)+
   #geom_vline(xintercept = 2004, color="red")+
   labs(title = "MRPL Profit Ratio for Ownership from 1985-2016",
-       subtitle = "Method: WinPct",
+       subtitle = "Method: Scully (Win Maximization)",
        caption = "Data from Lahman and CPIAUCSL",
        x="Year",
        y="MRPL Ratio")+
@@ -837,6 +796,20 @@ ggplot(data = PCTMRP_WinPct)+
 Debut <- People %>% 
   select(playerID, debut) %>% 
   mutate(debut = as.numeric(substring(debut, 1, 4)))
+```
+
+```{r}
+Full_RS_RC <-  Full_RS_RC %>% 
+  right_join(NewSalaries, by = join_by("playerID", "yearID")) %>% 
+  mutate(PCTMRP = att/xAtt)
+
+PCTMRP_RS_RC <-  Full_RS_RC %>% 
+  group_by(yearID) %>% 
+  summarize(RS = sum(RS, na.rm = T),
+            RC = sum(RC, na.rm = T),
+            att = sum(att, na.rm = T),
+            xAtt = sum(xAtt, na.rm = T)) %>% 
+  mutate(PCTMRP = att / xAtt)
 ```
 
 ```{r}
@@ -859,28 +832,6 @@ RS_RC_Contract_DF <- Salary_RS_RC %>%
             xAtt = sum(xAtt)) %>% 
   mutate(PCTMRP = att / xAtt,
          Pct_MRP = xAtt / att)
-```
-
-```{r}
-#| label: fig-ContractRSRC
-#| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
-#| fig-cap-location: top
-#| fig-dpi: 300
-ggplot(data = RS_RC_Contract_DF)+
-  aes(x=yearID, y=PCTMRP)+
-  geom_line(aes(color=Contract))+
-  geom_point(aes(color=Contract))+
-  geom_vline(xintercept = c(1989.5,1993.5,1996.5,2000.5,2006.5,2011.5), linetype="12345678", alpha=.5)+
-  ylim(c(-1,14))+
-  scale_x_continuous(n.breaks = 8)+
-  scale_color_manual(values=c("#601A4A", "#EE442F", "#63ACBE"))+
-  geom_hline(yintercept = 1, color="black", linetype=2)+
-  labs(title = "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016",
-       subtitle = "Method: RS+RC",
-       caption = "Data from Lahman and CPIAUCSL",
-       x="Year",
-       y="MRPL Ratio")+
-  theme(text = element_text(family = "Times New Roman"))
 ```
 
 ```{r}
@@ -911,6 +862,7 @@ WinPct_Contract_DF <- Salary_WinPct %>%
 #| fig-cap-location: top
 #| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
 #| fig-dpi: 300
+#| fig-height: 2.75
 #Graph for WinPct
 ggplot(data = WinPct_Contract_DF)+
   aes(x=yearID, y=PCTMRP, color=Contract)+
@@ -922,7 +874,61 @@ ggplot(data = WinPct_Contract_DF)+
   scale_x_continuous(n.breaks = 8)+
   scale_y_continuous(n.breaks = 6)+
   labs(title = "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016",
-       subtitle = "Method: WinPct",
+       subtitle = "Method: Scully (Win Maximization)",
+       caption = "Data from Lahman and CPIAUCSL",
+       x="Year",
+       y="MRPL Ratio")+
+  theme(text = element_text(family = "Times New Roman"))
+```
+
+```{r}
+#| label: fig-LeagueRSRC
+#| fig-cap: "MRPL Profit Ratio for Ownership from 1985-2016"
+#| fig-cap-location: top
+#| fig-dpi: 300
+#| fig-height: 2.75
+
+
+ggplot(data = PCTMRP_RS_RC)+
+  aes(x=yearID, y=PCTMRP)+
+  geom_line()+
+  geom_point()+
+  #Half's are added because negotiations take place between seasons
+  geom_vline(xintercept = 1989.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 1993.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 1996.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2000.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2006.5, linetype="12345678", alpha=.5)+
+  geom_vline(xintercept = 2011.5, linetype="12345678", alpha=.5)+
+  #geom_vline(xintercept = 2004, color="red")+
+  ylim(c(0,5.2))+
+  geom_hline(linetype=2, alpha = .8, yintercept = 1)+
+  scale_x_continuous(n.breaks = 8)+
+  labs(title = "MRPL Profit Ratio for Ownership from 1985-2016",
+       subtitle = "Method: Utility Maximization",
+       caption = "Data from Lahman and CPIAUCSL",
+       x="Year",
+       y="MRPL Ratio")+
+  theme(text = element_text(family="Times New Roman"))
+```
+
+```{r}
+#| label: fig-ContractRSRC
+#| fig-cap: "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016"
+#| fig-cap-location: top
+#| fig-dpi: 300
+#| fig-height: 2.75
+ggplot(data = RS_RC_Contract_DF)+
+  aes(x=yearID, y=PCTMRP)+
+  geom_line(aes(color=Contract))+
+  geom_point(aes(color=Contract))+
+  geom_vline(xintercept = c(1989.5,1993.5,1996.5,2000.5,2006.5,2011.5), linetype="12345678", alpha=.5)+
+  ylim(c(-1,14))+
+  scale_x_continuous(n.breaks = 8)+
+  scale_color_manual(values=c("#601A4A", "#EE442F", "#63ACBE"))+
+  geom_hline(yintercept = 1, color="black", linetype=2)+
+  labs(title = "MRPL Profit Ratio for Ownership by Contract Type from 1985-2016",
+       subtitle = "Method: Utility Maximization",
        caption = "Data from Lahman and CPIAUCSL",
        x="Year",
        y="MRPL Ratio")+
