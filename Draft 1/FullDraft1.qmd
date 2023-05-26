@@ -91,17 +91,17 @@ $$
 \widehat{MRP}_{A,W}=\Omega_1\cdot(\Gamma_1\cdot PERF_A).
 $$ {#eq-HatWinMRP}
 
-In @eq-HatWinMRP $\widehat{MRP}_{A,W}$ represents the estimated MRP of player $A$ using the Scully method, $W$. We can calculate the player's MRP using their performance statistics, $PERF_A$ and multiplying that by their associated weights $\Gamma_1$. At this stage we have calculated how the player effects his team's ability to win. Then, we can multiply that by $\Omega_1$ to derive the players estimated effect on attendance, which is ultimately his MRP. The results of this process are outlined in @sec-WinMaximizationResults as well as discussion concerning what statistics were used in $PERF_A$ and their associated weights $\Gamma_1$.
+In @eq-HatWinMRP, $\widehat{MRP}_{A,W}$ represents the estimated MRP of player $A$ using the Scully method, $W$. We can calculate the player's MRP using their performance statistics, $PERF_A$ and multiplying that by their associated weights $\Gamma_1$. At this stage we have calculated how the player effects his team's ability to win. Then, we can multiply that by $\Omega_1$ to derive the players estimated effect on attendance, which is ultimately his MRP. The results of this process are outlined in @sec-WinMaximizationResults as well as discussion concerning what statistics were used in $PERF_A$ and their associated weights $\Gamma_1$.
 
 ## Utility Maximization Method {#sec-UtilityMethod}
 
-The utility maximization method is an expansion and revision of the Scully approach. It rejects the assumption that consumers only gain utility, and therefore attend games, to see a team win. More contemporary consumer research has found that while winning has does have an influence on consumer behavior, it is far from the only or best predictor [@borland_demand_2003]. Therefore, a new judgement of player abilities is needed and it must better represent consumer preferences. This paper proposes that scoring runs and preventing runs from being scored against are better predictors for consumer preferences. This aligns better with the previous literature which claims that consumers value quality and contention of games more than winning [@borland_demand_2003]. Thus, using this new method, a player's MRP is the sum of their ability to help their team score runs and prevent their opponent from scoring runs multiplied by the effect this has on attendance. This new method of measuring MRP can be expressed as the following equation,
+The utility maximization method is an expansion and revision of the Scully approach. It rejects the assumption that consumers only gain utility, and therefore attend games, to see a team win. More contemporary consumer research has found that while winning does have an influence on consumer behavior, it is far from the only or best predictor [@borland_demand_2003]. This paper proposes that scoring runs is the best representation of offensive quality and preventing runs from being scored is the best representation of defensive quality. This aligns better with previous literature which claims that consumers value quality and contention of games more than winning [@borland_demand_2003]. To ensure a holistic view of game quality we take the sum of offensive and defensive quality when determining MRPL. Thus, using this new method, a player's MRPL is the sum of their ability to help their team score runs and prevent their opponent from scoring runs, multiplied by the respective effects these outcomes have on attendance. This new method of measuring MRPL can be expressed as the following equation,
 
 $$
 MRPL_{I,J}=[\frac{\partial Attendance_{I,J}}{\partial R_{I,J}}\cdot\frac{\partial R_{I,J}}{\partial PERF_{I,J}}]+[\frac{\partial Attendance_{I,J}}{\partial RA_{I,J}}\cdot\frac{\partial RA_{I,J}}{\partial PERF_{I,J}}].
 $$ {#eq-RSRCMRP}
 
-Where for team $I$ in year $J$, the change in attendance $\partial Attendance$ is due to the change in game quality $\partial (RA+R)$ which is in turn due to change in performance outcomes $\partial PERF$. This should look very similar to @eq-ScullyMRPNew because the only difference is the substitution of $\partial WPCT$ with $\partial (RA + R)$ to better account for consumer preferences. Note that MRPL is again measured in attendance instead of dollars because of the problems outlined in @sec-WinMethod.
+Interpreting @eq-RSRCMRP is very similar to interpreting @eq-ScullyMRPNew and @eq-ScullyMRP. The first half of @eq-RSRCMRP, $\frac{\partial Attendance_{I,J}}{\partial R_{I,J}}\cdot\frac{\partial R_{I,J}}{\partial PERF_{I,J}}$, describes the estimated effect changes performance statistics, $\partial PERF$, have on team $I$'s ability to score runs, $\partial R$, in year $J$. Then, it describes the estimated effect scoring runs, $\partial R$, has on team $I$'s attendance, $\partial Attendance$, in year $J$. The second half of @eq-RSRCMRP, $\frac{\partial Attendance_{I,J}}{\partial RA_{I,J}}\cdot\frac{\partial RA_{I,J}}{\partial PERF_{I,J}}$, describes the estimated effect changes performance statistics, $\partial PERF$, have on team $I$'s ability to prevent runs from being scored, $\partial RA$, in year $J$. Then, it describes the estimated the effect preventing runs from being scored, $\partial RA$, has on team $I$'s attendance, $\partial Attendance$, in year $J$. Finally, we add the associated effects to acquire a holistic estimation of MRPL. Note that MRPL is again measured in attendance instead of dollars because of the problems outlined in @sec-WinMethod.
 
 Similar to @eq-MyAttWPCTReg, we can estimate the effect that offensive (scoring runs) and defensive (preventing runs from being scored) quality have on attendance with the following fixed effects regression,
 
@@ -109,7 +109,7 @@ $$
 Attendance_{I,J}=\mu_0+\mu_1RA_{I,J}+\mu_2R_{I,J}+\psi_I+\lambda_J+\epsilon.
 $$ {#eq-MyRSRCReg}
 
-In this regression $RA$ is a the number of runs scored against team $I$ in year $J$ and $R$ is the amount of runs team $I$ scored in year $J$. The term $\mu_1$ is the associated effect that an additional $RA$ will have on the attendance of team $I$ in year $J$. Similarly, $\mu_2$ is the associated effect that an additional $R$ will have on the attendance for team $I$ in year $J$. The variable $\psi_I$ can be understood as an intercept that is used to control for factors that differ from team to team but stay the same year over year. This can be thought of as the term that controls for population and fan enthusiasm from team to team. The variable $\lambda_J$ can also be thought of as an intercept that controls for variables which stay the same from team to team but differ from year to year. Most examples of this would be league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
+In this regression $RA$ is a the number of runs scored against team $I$ in year $J$ and $R$ is the amount of runs team $I$ scored in year $J$. The term $\mu_1$ is the associated effect that an additional $RA$ will have on the attendance of team $I$ in year $J$. Similarly, $\mu_2$ is the associated effect that an additional $R$ will have on the attendance for team $I$ in year $J$. The variable $\psi_I$ can be understood as an intercept that is used to control for factors that differ from team to team but stay the same year over year. This can be thought of as the term that controls for fan enthusiasm among other things. The variable $\lambda_J$ can also be thought of as an intercept that controls for variables which stay the same from team to team but differ from year to year. Most examples of this would be league wide rule changes. The term $\epsilon$ is the error term of the regression and is used to represent any other variation in the data.
 
 It is imperative to note that it is impossible to directly measure the effect a singular player has on a team's ability to score or prevent runs from being scored. However, using team statistics it is possible to determine how offensive and defensive outcomes effect a team's ability to score and prevent runs from being scored. Thus we can estimate the effect each player has by first determining which outcomes are most important in scoring runs and preventing runs from being scored with the following fixed effect regressions,
 
@@ -121,19 +121,19 @@ $$
 R=\beta_0+\beta_1Hitting+\beta_2Baserunning+\rho_I+\pi_J+\epsilon.
 $$ {#eq-RReg}
 
-Understanding both regressions is simple. The amount of runs scored against a team is a combination of the team's pitching and fielding ability. Many variables will be considered so the general coefficients $\phi_1$ and $\phi_2$ will be used as a place holder until actual weights are derived. Furthermore, the amount of runs that a team scores is a combination of a team's hitting and baserunning ability. Many variables will also be considered for hitting and baserunning so the general coefficients $\beta_1$ and $\beta_2$ will be used as a place holder until the actual weights are derived. The outcomes used and their associated weights are discussed further in @sec-UtilityResults. Both @eq-RAReg and @eq-RReg are fixed effects models. Thus, it is understood that both $\omega_I$ and $\rho_I$ are controlling for the same effects. Namely they control for things that stay the same year to year but differ from team to team. Examples of this include managerial quality, stadium location, etc. Similarly, the terms $\chi_J$ and $\pi_J$ are also understood to control for the same effects. They control for things that differ from year to year but stay the same from team to team. These mostly include league wide rule changes. The term $\epsilon$ is understood to be the error term that accounts for an additional variation in the data.
+Understanding both regressions is simple. The amount of runs scored against a team is a combination of the team's pitching and fielding ability. Many variables will be considered so the general coefficients $\phi_1$ and $\phi_2$ will be used as place holders until actual weights are derived. Furthermore, the amount of runs that a team scores is a combination of a team's hitting and baserunning ability. Many variables will also be considered for hitting and baserunning so the general coefficients $\beta_1$ and $\beta_2$ will be used as place holders until the actual weights are derived. The outcomes used and their associated weights are discussed further in @sec-UtilityResults. Both @eq-RAReg and @eq-RReg are fixed effects models. Thus, it is understood that both $\omega_I$ and $\rho_I$ are controlling for the same effects. Namely they control for things that stay the same year to year but differ from team to team. Examples of this include managerial quality, stadium location, etc. Similarly, the terms $\chi_J$ and $\pi_J$ are also understood to control for the same effects. They control for things that differ from year to year but stay the same from team to team. These mostly include league wide rule changes. The term $\epsilon$ is understood to be the error term that accounts for any additional variation in the data.
 
-Again, similar to Scully in @eq-ScullyPlayerEstimate we can use these regressions to estimate a player's MRPL once learning the values of the $\mu$'s, $\phi$'s, and $\beta$'s. The estimated marginal revenue product is denoted by the hat and described in the following equation,
-
-$$
-\widehat{MRPL}=(\mu_1\cdot RS)+(\mu_2\cdot RC)
-$$
+Again, similar to @eq-HatWinMRP this makes estimating a player's MRP ($\widehat{MRP}$) a composite function. After deriving the values of $\mu_1, \mu_2, \phi_1, \phi_2, \beta_1,$ and $\beta_2$ the following equation can be used to estimate a player's MRPL,
 
 $$
-=(\mu_1\cdot[\phi_1Pitching+\phi_2Fielding])+(\mu_2\cdot[\beta_1Hitting+\beta_2Baserunning]).
+\widehat{MRPL}_{A,U}=[\mu_1\cdot(\phi_1Pitching_A+\phi_2Fielding_A)]
+$$ {#eq-HatUtilityMRP}
+
+$$
++[\mu_2\cdot(\beta_1Hitting_A+\beta_2Baserunning_A)].
 $$
 
-The coefficients $\mu_1, \mu_2, \phi_1, \phi_2, \beta_1,$ and $\beta_2$ are described above. To emphasize that we are estimating a player's contribution to $RA$ and $R$ we will use the variable $RS$ to denote $\widehat{RA}$ and $RC$ to denote $\widehat{R}$, respectively. Estimating a player's $RS$ or $RC$ is as simple as multiplying the amount of times they had an outcome occur by the associated weight that outcome has on a team's ability to score or prevent runs from being scored.
+In @eq-HatUtilityMRP, $\widehat{MRP}_{A,U}$ represents the estimated MRP of player $A$ using the utility maximization method, $U$. We can calculate the player's MRPL using their performance statistics ($Pitching_A, Fielding_A, Hitting_A,$ and $Baserunning_A$) and multiplying that by their associated weights ($\phi_1, \phi_2, \beta_1$, and $\beta_2$ respectively). At this stage we have calculated how player A effects his team's ability to score runs and prevent runs from being scored. Then, we can multiply these abilities by $\mu_1$ and $\mu_2$ respectively and finally add these effects to derive player A's estimated effect on attendance, which is ultimately his MRP. The results of this process are outlined in @sec-UtilityResults as well as discussion concerning what statistics were used in $Pitching_A, Fielding_A, Hitting_A,$ and $Baserunning_A$ and their associated weights ($\phi_1$, $\phi_2$, $\beta_1$, and $\beta_2$ respectively).
 
 ## Relating Attendance to Wages {#sec-AttToWageMethod}
 
@@ -145,9 +145,9 @@ $$
 Attendance_{I,J}=\zeta_0+\zeta_1(Payroll_{I,J})+\xi_I+\sigma_J+\epsilon.
 $$ {#eq-AttendancePayrollReg}
 
-In this regression, we find that for team $I$ in year $J$ an increase in payroll of 1 (dollar) will result in an change in attendance of $\zeta_1$. Payroll is the sum of the cost of all contracts for players for team $I$ in year $J$. The terms $\xi_I$ and $\sigma_J$ represent the fixed effects. The term $\xi_I$ represents things that differ across teams but stay the same year over year. This is mostly controlling for things such as park location. While the term $\sigma_J$ represents things that differ from year to year but remain the same across teams. Examples of this mostly include league wide rule changes.
+In this regression, we find that for team $I$ in year $J$ an increase in payroll of 1 (dollar) will result in an change in attendance of $\zeta_1$. Payroll is the sum of the cost of all contracts for players for team $I$ in year $J$. The terms $\xi_I$ and $\sigma_J$ represent the fixed effects. The term $\xi_I$ represents things that differ across teams but stay the same year over year. This is mostly controlling for things such as ballpark location. While the term $\sigma_J$ represents things that differ from year to year but remain the same across teams. Examples of this mostly include league wide rule changes.
 
-Using this equation and our assumptions we now have the relationship between how much a team spends and how that affects their attendance. This implies that we can compute how much attendance ownership expects an individual player to bring into the stadium by multiplying their salary by $\widehat{\zeta_1}$. Thus, it is possible now to compute both player's estimated and actual attendance figures. Continuing with methodology pioneered in previous literature we can now begin exploring the implication this has on market efficiency [@scully_pay_1974; @krautmann_whats_1999].
+Using this equation and our assumptions we now have the relationship between how much a team spends and how that affects their attendance. This implies that we can compute how much attendance ownership expects an individual player to bring into the stadium by multiplying their salary by $\widehat{\zeta_1}$. Thus, it is possible now to compute both player's estimated and actual attendance figures. Continuing with methodology pioneered in previous literature we can now begin exploring the implication this has on market efficiency.
 
 # Empirical Strategy {#sec-Results}
 
@@ -623,7 +623,7 @@ Full_RS_RC <- Full_RS_RC %>%
 
 There are two sources from which data were gathered. The first source was the Lahman database [@Lahman_cit] which has records on every MLB team and player from the 1871 to 2022 season. Team and player performance, salaries, and attendance data was aggregated, regressed, and computed from here. This analysis considers observations from the 1985 to 2016 seasons because that was the range of years that salary information was available in the Lahman database. Access to the Lahman database came from the R package "Lahman" [@r_lang_cit; @Lahman_cit].
 
-The other source used was a consumer price index (CPI) accessed through the "quantmod" R package [@quantmod_cit]. The specific CPI used was the CPIAUCSL which is a CPI designed for all urban consumers and is gathered from the Federal Reserve Bank of St. Louis. Using an urban consumer CPI is appropriate because MLB teams are often present in urban metropolitan environments. The CPIAUCSL was used to adjust player salaries to what their value would be in 2016 dollars. All salaries were converted to real 2016 dollars before being used in an analysis of any capacity.
+The other source used was a consumer price index (CPI) accessed through the "quantmod" R package [@quantmod_cit]. The specific CPI used was the CPIAUCSL which is a CPI designed for all urban consumers and is gathered from the Federal Reserve Bank of St. Louis. Using an urban consumer CPI is appropriate because MLB stadiums are often located in urban metropolitan environments. The CPIAUCSL was used to adjust player salaries to what their value would be in 2016 dollars. All salaries were converted to real 2016 dollars before being used in an analysis of any capacity.
 
 All computations were done with the R statistical software version 4.2.2 [@r_lang_cit]. Data manipulation and graphing were done using both R and the "tidyverse" package [@r_lang_cit; @tidyverse_cit]. Fixed effects regressions were made using the "fixest" package [@fixest_cit] and displayed using the "modelsummary" package [@model_summary_cit].
 
@@ -785,8 +785,6 @@ ggplot(data = PCTMRP_RS_RC)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family="Times New Roman"))
-
-ggsave("RSRCLeague.png")
 ```
 
 ```{r}
@@ -831,8 +829,6 @@ ggplot(data = PCTMRP_WinPct)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family="Times New Roman"))
-
-ggsave("WinPCTLeage.png")
 ```
 
 ```{r}
@@ -883,8 +879,6 @@ ggplot(data = RS_RC_Contract_DF)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family = "Times New Roman"))
-
-ggsave("RSRCContract.png")
 ```
 
 ```{r}
@@ -931,7 +925,6 @@ ggplot(data = WinPct_Contract_DF)+
        x="Year",
        y="MRPL Ratio")+
   theme(text = element_text(family = "Times New Roman"))
-ggsave("WPCTContract.png")
 ```
 :::
 
