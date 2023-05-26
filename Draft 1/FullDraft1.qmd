@@ -7,6 +7,7 @@ date: today
 format: pdf
 editor: visual
 bibliography: Bib-4-24.bib
+csl: apa.csl
 fontsize: 12pt
 mainfont: Times New Roman
 sansfont: Times New Roman
@@ -35,7 +36,7 @@ In sports economics there are two theories which attempt to explain what success
 
 Since almost all previous literature assumes that winning games is the only thing that consumers, and therefore owners, care about authors' often judge players' productivity using winning as the yardstick for success. However, it is obvious that fans care about things other then just seeing their team win. Consider the "die-hard" fans who will continue to attend games even in years where winning is scarce. The existence of these "die-hard" fans calls the assumptions of the win maximization hypothesis into question. In fact, the current consensus among economists agrees with this doubt and finds consumers do not only care much about winning [@borland_demand_2003]. This consumer demand research suggest consumers care most about the quality of the game and its contention. Meaning, consumers would much rather see a game played well and be unsure of the outcome rather than knowing their team will win.
 
-The seminal piece of MLB labor market efficiency is Gerald Scully's 1974 publication "Pay and Performance in Major League Baseball" [@scully_pay_1974]. Scully's research involved observing how the reserve clause influenced salary negotiations between players and owners. He hypothesized, and ultimately found, that the reserve clause created monopsony hiring power for MLB ownership. By Scully's estimations, this allowed for owners to pay players wages which were less than their MRP. Scully's analysis has become antiquated since the reserve clause was overturned in 1976 [@hall_testing_2002] and the market structure became substantially less monopsonistic. However, the importance and genius of Scully's research is the methodology. Thus, we use Scully's methods in this paper as a baseline to ensure findings and conclusions are profound and undiscovered.
+The seminal piece of MLB labor market efficiency is Gerald Scully's 1974 publication "Pay and performance in major league baseball" [@scully_pay_1974]. Scully's research involved observing how the reserve clause influenced salary negotiations between players and owners. He hypothesized, and ultimately found, that the reserve clause created monopsony hiring power for MLB ownership. By Scully's estimations, this allowed for owners to pay players wages which were less than their MRP. Scully's analysis has become antiquated since the reserve clause was overturned in 1976 [@hall_testing_2002] and the market structure became substantially less monopsonistic. However, the importance and genius of Scully's research is the methodology. Thus, we use Scully's methods in this paper as a baseline to ensure findings and conclusions are profound and undiscovered.
 
 As some economists have previously noticed [@vrooman_baseball_1996, pp. 353], after the abolition of the uniform reserve clause a bilateral monopoly was created between players and owners for all contract types except free agents. There is currently not a consensus on how to model bilateral monopolies and their interactions other than considering vertical integration between the parties. However, vertical integration clearly does not apply here. Therefore, previous literature would suggest that this bilateral monopoly should be modeled using bargaining power [@siddhartha_equilibrium_2002]. Under this model, the party with even slightly higher bargaining power will earn a higher portion of the profits. Thus, we can expect that as either owners or players change their bargaining power so too will their proportions of compensation change.
 
@@ -667,11 +668,12 @@ In conclusion, we find that we can replicate the findings of previous literature
 
 ```{r}
 #May be able to save tables and graphs as latex and manually add them into R-Markdown document. Examples can be seen from the Lee and Demerest (2023) paper
+#Couldn't get that to work currently
 ```
 
 ```{r}
 #| label: tbl-WinPctSum
-#| tbl-cap: "WPCT Regression"
+#| tbl-cap: "Performance on Win Percentage Regression"
 modelsummary(models = list("WinPct" = winpct_reg),
              fmt = 2,
              coef_omit = c("teamID|yearID"),
@@ -688,10 +690,10 @@ modelsummary(models = list("WinPct" = winpct_reg),
 
 ```{r}
 #| label: tbl-RSRCSum
-#| tbl-cap: "RS & RC Regressions"
+#| tbl-cap: "Performance on RA & R Regressions"
 #| keep-with-previous: True
-modelsummary(models = list("RS" = rs_reg,
-                           "RC" = rc_reg),
+modelsummary(models = list("RA" = rs_reg,
+                           "R" = rc_reg),
              fmt = 2,
              coef_omit = c("teamID|yearID"),
              coef_rename = c("(Intercept)" = "Constant"),
@@ -725,7 +727,7 @@ modelsummary(models = list("AttWPCT" = attWinPct_reg,
 
 ```{r}
 #| label: tbl-OtherSum
-#| tbl-cap: "Other Regressions"
+#| tbl-cap: "Team Cost Regression"
 modelsummary(models = list("AttCost" = attCost_reg),
              fmt = 2,
              coef_omit = c("teamID|yearID"),
