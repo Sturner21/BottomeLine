@@ -2,7 +2,7 @@
 title: "Baseball and the Bottom Line"
 subtitle: "An Econometric Analysis of Market Efficiency for MLB Player Contracts"
 author: "Sam Turner"
-abstract: "Since MLB players earned Free Agency in 1976 there has been little economic literature examining its effect on the efficiency of the market for player contracts. What little exists often is counterintuitive to economic findings in other subfields. We reconsider both old methodology and propose a new one which better represents current economic consensus to retest if the MLB labor market is acting efficiently. We ultimately find efficiency is almost completely determined by methodology and the researcher's belief of what makes a player \"good\"."
+abstract: "MLB players earned Free Agency in 1976, yet economic literature remains sparse in examining its effect on the efficiency of the market for player contracts. Existing research in this area often yields counterintuitive results when compared to economic findings in other subfields. To address these gaps in the literature, our study aims to offer a deeper understanding of the elements influencing efficiency within the MLB labor market. We use a panel fixed effect model using data spanning from 1985 to 2016. While our results indicate that from 1985 to 1999 the contract market was acting inefficiently, beginning in the year 2000 the market reached levels close to efficiency which carried forward through 2016. These findings remain robust when considering different contract types. This stands starkly in contrast with the findings of previous literature which suggest, regardless of contract type, the market never came close to equilibrium during the years considered."
 date: today
 format: pdf
 editor: visual
