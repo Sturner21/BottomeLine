@@ -6,7 +6,7 @@ abstract: "MLB players earned free agency in 1976, yet the sports economics lite
 date: today
 format: pdf
 editor: visual
-bibliography: Bib-10-14.bib
+bibliography: Bib-10-23.bib
 csl: apa.csl
 fontsize: 12pt
 mainfont: Times New Roman
@@ -28,7 +28,7 @@ The idea of labor market efficiency is heavily prevelent in labor and sports eco
 
 Inspired by the work of more contemporary baseball statisticians [@baumer_openwar_2015] and new developments in consumer behavior research [@borland_demand_2003] we can understand that there are several shortcomings not addressed by either Scully or Krautmann. First, better understanding of player ability requires more than a collection of a couple outcome statistics. A more mathematically rigorous approach should be used to achieve the most accurate results [@baumer_openwar_2015; @pinheiro_all_2022]. Thus, we will use more advanced regression techniques to retest the Scully method over a longer time interval to see if it has any impact on his findings. This should result in better measurements of players abilities. Additionally, new research in consumer demand for sports has found that fans often do not care as much about a team winning a game as they do with the contention and quality of said game [@borland_demand_2003]. This means that a new approach should be used which takes into account fan engagement. This paper proposes a new method which aims to measure player success in terms of offensive and defensive quality to better represent these new findings.
 
-Ultimately, we confirm most of the findings of Scully (1974) and Krautmann (1999) when repeating their methods. Specifically, if we judge players only on their ability to help their team win then the data suggests they are over compensated. However, when we examine the findings of Scully (1974) and Krautmann (1999) for the seasons from 1985 to 2016 their findings become inconsistent with previous literature on labor strikes. Labor strikes, which occurred six times over this period, should lead to higher real compensation for players [@card_strikes_1990]. Changes in real compensation, induced by labor strikes, should be refelcted in efficiency models. Yet, the models from both Scully (1974) and Krautmann (1999) are unable to account for these strikes. However, the model using new regression techniques paired with assumptions from new consumer demand research is able to reflect the consequences of labor strikes in predictions of efficiency. Thus, our model erases the discrepency created by Scully (1974) and Krautmann (1999). This suggests that our model makes better, more accurate, predictions about the efficiency of player compensation.
+Ultimately, we confirm most of the findings of Scully (1974) and Krautmann (1999) when repeating their methods. Specifically, if we judge players only on their ability to help their team win then the data suggests they are over compensated. However, when we examine the findings of Scully (1974) and Krautmann (1999) for the seasons from 1985 to 2016 their findings become inconsistent with previous literature on labor strikes. Labor strikes, which occurred six times over this period, should lead to higher real compensation for players [@card_strikes_1990]. Changes in real compensation, induced by labor strikes, should be reflected in efficiency models. Yet, the models from both Scully (1974) and Krautmann (1999) are unable to account for these strikes. However, the model using new regression techniques paired with assumptions from new consumer demand research is able to reflect the consequences of labor strikes in predictions of efficiency. Thus, our model erases the discrepancy created by Scully (1974) and Krautmann (1999). This suggests that our model makes better, more accurate, predictions about the efficiency of player compensation.
 
 # Literature Review {#sec-LitReview}
 
@@ -42,13 +42,15 @@ Some economists noticed that after the abolition of the uniform reserve clause a
 
 ## Marginal Revenue Product of Labor {#sec-MRPLMethod}
 
-Labor's productive ability is not uniform across each worker. Therefore, a model which can differentiate between laborers and and their output is needed for judging individual laborers. This can be demonstrated simply and abstractly in the following equation,
+Scully (1974) is credited not only with being the first to investigate efficiency of MLB contracts, but also the first to apply the MRPL method in any sub-field of economics [@bradbury_what_2013]. In abstract, the MRPL relates individual labor productivity to revenue. As described in @eq-GeneralMRP, it achieves this by multiplying the output from labor by the associated effect on revenue.
 
 $$
 MRPL = \frac{\Delta R}{\Delta Q}\cdot\frac{\Delta Q}{\Delta L}.
 $$ {#eq-GeneralMRP}
 
-Where $\Delta R$ is the change in revenue due to the $\Delta Q$ change in quantity which is then multiplied by the $\Delta Q$ change in quantity due to the $\Delta L$ change in labor. The precedent for using this model has already been set by multiple economists considering similar research questions [@scully_pay_1974; @krautmann_whats_1999].
+Where $\Delta R$ is the change in revenue due to the $\Delta Q$ change in quantity which is then multiplied by the $\Delta Q$ change in quantity due to the $\Delta L$ change from labor. It is advantageous to use this method because it allows computation of per worker contributions to revenue.
+
+This tool should not be used to make normative claims; it only acts to measure per worker contribution to reveune. Indeed, Scully (1974) uses this only to measure MLB player's contribution to team revenue. He relies on other economic theory to make the normative claim about efficiency [@scully_pay_1974]. Any normative claims about efficiency rest on market structure rather than MRPL [@krautmann_whats_1999].
 
 ## Win Maximization Method {#sec-WinMethod}
 
