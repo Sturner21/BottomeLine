@@ -622,13 +622,11 @@ Full_RS_RC <- Full_RS_RC %>%
   mutate(att = calc_att(RC, RS))
 ```
 
-## Data {#sec-Data}
+## Data Source {#sec-Data}
 
-There are two sources from which data were gathered. The first source was the Lahman database [@Lahman_cit] which has records on every MLB team and player from the 1871 to 2022 season. Team and player performance, salaries, and attendance data was aggregated, regressed, and computed from here. This analysis considers observations from the 1985 to 2016 seasons because that was the range of years that salary information was available in the Lahman database. Access to the Lahman database came from the R package "Lahman" [@r_lang_cit; @Lahman_cit].
+There are two sources from which data were gathered. The first source was the Lahman database which was accessed through the "Lahman" R package [@Lahman_cit]. The Lahman database has records on every MLB team and player from the 1871 to 2022 season. Team and player performance, salaries, and attendance data was aggregated, regressed, and computed from here. This analysis considers observations from the 1985 to 2016 seasons because that was the range of years that salary information was available in the Lahman database [@Lahman_cit].
 
 The other source used was a consumer price index (CPI) accessed through the "quantmod" R package [@quantmod_cit]. The specific CPI used was the CPIAUCSL which is a CPI designed for all urban consumers and is gathered from the Federal Reserve Bank of St. Louis. Using an urban consumer CPI is appropriate because MLB stadiums are often located in urban metropolitan environments. The CPIAUCSL was used to adjust player salaries to what their value would be in 2016 dollars. All salaries were converted to real 2016 dollars before being used in an analysis of any capacity.
-
-All computations were done with the R statistical software version 4.2.2 [@r_lang_cit]. Data manipulation and graphing were done using both R and the "tidyverse" package [@r_lang_cit; @tidyverse_cit]. Fixed effects regressions were made using the "fixest" package [@fixest_cit] and displayed using the "modelsummary" package [@model_summary_cit].
 
 ## Win Maximization Results {#sec-WinMaximizationResults}
 
