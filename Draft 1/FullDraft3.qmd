@@ -4,6 +4,7 @@ subtitle: "Examining the Market Efficiency for MLB Player Contracts"
 author: "Sam Turner"
 abstract: "MLB players earned free agency in 1976, yet the sports economics literature remains thin in examining its effect on the efficiency of the market for player contracts, and it still offers conflicting results. To address these gaps in the literature, our study aims to offer a deeper understanding of the elements influencing efficiency within the MLB labor market. We use a panel fixed effect model using comprehensive data spanning from 1985 to 2016. While our results indicate that from 1985 to 1999 the contract market was acting inefficiently, beginning in the year 2000, the market reached levels close to efficiency, which carried forward through 2016. These findings remain robust when considering different contract types, such as Monopsony, Arbitration, and Free Agency. This stands starkly in contrast with the findings of previous literature, which suggest that, regardless of contract type, the market never came close to equilibrium during the years considered."
 date: today
+date-format: long
 format: pdf
 editor: visual
 bibliography: Bib-10-23.bib
@@ -39,22 +40,6 @@ A shortcoming of Scully's (1974) method is his reliance on the assumption that w
 Some economists noticed that the abolition of the uniform reserve clause created a bilateral monopoly between players and owners [@vrooman_baseball_1996, pp.353]. Neither Scully (1974) nor Krautmann (1999) accounted for this in their models. This shortcoming caused us to take the fact of a bilateral monopoly into account in our models to maximize applicability and generalize our findings. Previous literature would suggest that this bilateral monopoly should be modeled using bargaining power [@siddhartha_equilibrium_2002]. More precisely, this literature concludes that parties with more bargaining power will earn a higher proportion of the profits split between the two groups. In the context of MLB player negotiations, this means that we can expect that as either owners or players change their bargaining power so too will their proportions of compensation change. In turn, we should see these changes in compensation reflected in our models of efficiency.
 
 # Economic Model {#sec-Method}
-
-## Marginal Revenue Product of Labor {#sec-MRPLMethod}
-
-Scully (1974) is credited not only with being the first to investigate efficiency of MLB contracts, but also the first to apply the MRPL method in any sub-field of economics [@bradbury_what_2013]. In the abstract, the MRPL relates individual labor productivity to revenue. As described in @eq-GeneralMRP, it achieves this by multiplying the output from labor by the associated effect on revenue.
-
-$$
-MRPL = \frac{\Delta R}{\Delta Q}\cdot\frac{\Delta Q}{\Delta L}.
-$$ {#eq-GeneralMRP}
-
-Where $\Delta R$ is the change in revenue due to the $\Delta Q$ change in quantity which is then multiplied by the $\Delta Q$ change in quantity due to the $\Delta L$ change from labor. It is advantageous to use this method because it allows computation of per worker contributions to revenue.
-
-This tool should not be used to make normative claims; it only acts to measure per worker contribution to revenue. Indeed, Scully (1974) uses this solely to measure a single MLB player's contribution to team revenue. He relies on other economic theory to make the normative claim about efficiency [@scully_pay_1974].
-
-Dad suggestion- However, a separate conceptualization of aggregate/team MRPL based on the model described in @eq-GeneralMRP is revealing.
-
-Any normative claims about efficiency rest on market structure rather than MRPL [@krautmann_whats_1999].
 
 ## Win Maximization Method {#sec-WinMethod}
 
